@@ -114,7 +114,7 @@ REGLAS GENERALES:
 - No des la respuesta correcta de inmediato; haz preguntas para que el estudiante llegue a ella.
 `;
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE__API_KEY });
 
 export const sendMessageToTutor = async (history: {role: string, parts: {text: string}[]}[], message: string) => {
   try {
