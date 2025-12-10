@@ -9,7 +9,7 @@ import Credits from './components/Credits';
 import Welcome from './components/Welcome';
 import { ViewState } from './types';
 import { CHAPTERS } from './constants';
-import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star, Download } from 'lucide-react';
+import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star } from 'lucide-react';
 
 const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }: any) => (
   <>
@@ -206,17 +206,6 @@ const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) =
           <button onClick={onDefense} className="px-8 py-4 rounded-xl bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 shadow-xl shadow-indigo-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
             <BrainCircuit size={20} /> Habla con el Director
           </button>
-        </div>
-
-        {/* Download Button */}
-        <div className="flex justify-center">
-          <a 
-            href="./manual.pdf" 
-            download 
-            className="flex items-center gap-2 text-slate-500 hover:text-teal-600 font-medium px-4 py-2 rounded-lg hover:bg-teal-50 transition-colors text-sm"
-          >
-            <Download size={16} /> Descargar Manual Original (PDF)
-          </a>
         </div>
       </div>
       
