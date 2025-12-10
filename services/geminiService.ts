@@ -88,7 +88,7 @@ REGLAS GENERALES:
 - Tu misión es que el estudiante ENTIENDA, no evaluarlo.
 `;
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
 
 export const sendMessageToTutor = async (
   history: {role: string, parts: {text: string}[]}[], 
