@@ -9,7 +9,7 @@ import Credits from './components/Credits';
 import Welcome from './components/Welcome';
 import { ViewState } from './types';
 import { CHAPTERS } from './constants';
-import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star } from 'lucide-react';
+import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star, Download } from 'lucide-react';
 
 const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }: any) => (
   <>
@@ -171,7 +171,8 @@ const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) =
           Manual U. Finis Terrae 2025
         </div>
         <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
-          Planificación Estratégica <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">en Instituciones de Salud</span>
+          Planificación Estratégica <br className="hidden md:block"/>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">en Instituciones de Salud</span>
         </h1>
         <p className="max-w-2xl mx-auto text-xl text-slate-600 mb-12 leading-relaxed">
           Plataforma interactiva para dominar la gestión sanitaria. Diagnostica, formula y evalúa estrategias con herramientas prácticas y simulación inteligente.
@@ -198,13 +199,24 @@ const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) =
         </div>
         
         {/* Action Buttons Row 2 */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
           <button onClick={onFriendly} className="px-8 py-4 rounded-xl bg-orange-500 text-white font-bold text-lg hover:bg-orange-600 shadow-xl shadow-orange-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
             <MessageCircleQuestion size={20} /> Tutor de Dudas
           </button>
           <button onClick={onDefense} className="px-8 py-4 rounded-xl bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 shadow-xl shadow-indigo-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
             <BrainCircuit size={20} /> Habla con el Director
           </button>
+        </div>
+
+        {/* Download Button */}
+        <div className="flex justify-center">
+          <a 
+            href="./manual.pdf" 
+            download 
+            className="flex items-center gap-2 text-slate-500 hover:text-teal-600 font-medium px-4 py-2 rounded-lg hover:bg-teal-50 transition-colors text-sm"
+          >
+            <Download size={16} /> Descargar Manual Original (PDF)
+          </a>
         </div>
       </div>
       
@@ -213,7 +225,7 @@ const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) =
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10 mt-20">
         {[
           { 
-            title: "Contenidos del Manual", 
+            title: "Módulos de Aprendizaje", 
             icon: Book, 
             color: "blue", 
             onClick: onStart, 
@@ -380,7 +392,13 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-slate-50 relative font-sans text-slate-900">
       <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z' fill='%23000000' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")` }}></div>
       <div className="relative z-10 flex flex-col min-h-screen">
-        <Header currentView={view} onNavigate={setView} />
+        <Header 
+          currentView={view} 
+          tutorMode={tutorMode}
+          onNavigate={setView} 
+          onChatFriendly={startFriendlyTutor}
+          onChatDefense={startDefense}
+        />
         <main className="flex-1"><Content /></main>
         <footer className="bg-slate-900 text-slate-400 py-8 text-center text-sm border-t border-slate-800 mt-12">
           <div className="flex flex-col items-center gap-2">
