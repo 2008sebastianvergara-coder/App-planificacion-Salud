@@ -79,7 +79,7 @@ const AiTutor: React.FC<AiTutorProps> = ({ initialMode = 'normal' }) => {
         </div>
         <div>
           <h2 className="font-bold text-lg">
-            {isStrict ? "Director Médico Virtual" : "Tutor de Dudas y Consultas"}
+            {isStrict ? "Habla con el Director" : "Tutor de Dudas y Consultas"}
           </h2>
           <p className="text-xs opacity-90">
             {isStrict ? "Modo Defensa: Evaluación Rigurosa" : "Modo Ayudante: Explicaciones Claras y Amables"}

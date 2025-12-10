@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from './components/Header';
 import ChapterViewer from './components/ChapterViewer';
@@ -6,9 +5,11 @@ import SwotBuilder from './components/SwotBuilder';
 import KpiTrainer from './components/KpiTrainer';
 import PublicPrivateComparator from './components/PublicPrivateComparator';
 import AiTutor from './components/AiTutor';
+import Credits from './components/Credits';
+import Welcome from './components/Welcome';
 import { ViewState } from './types';
 import { CHAPTERS } from './constants';
-import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion } from 'lucide-react';
+import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star } from 'lucide-react';
 
 const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }: any) => (
   <>
@@ -34,7 +35,6 @@ const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }:
       <div className="flex-1 overflow-y-auto p-4 md:p-0 space-y-3">
         <h3 className="font-bold text-slate-700 mb-2 hidden md:block px-1">Índice de Contenidos</h3>
         {chapters.map((chap: any, idx: number) => {
-          const isLocked = idx > 0 && !completed[chapters[idx - 1].id];
           const isCurrent = idx === currentIdx;
           const isDone = completed[chap.id];
 
@@ -42,23 +42,18 @@ const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }:
             <button
               key={chap.id}
               onClick={() => {
-                if (!isLocked) {
-                  onSelect(idx);
-                  onClose();
-                }
+                onSelect(idx);
+                onClose();
               }}
-              disabled={isLocked}
               className={`w-full flex items-start gap-3 p-3 rounded-xl text-sm text-left transition-all border ${
                 isCurrent 
                   ? 'bg-teal-600 text-white shadow-lg border-teal-600 scale-105 z-10' 
-                  : isLocked 
-                    ? 'bg-slate-50 text-slate-400 border-transparent cursor-not-allowed opacity-70' 
-                    : isDone
-                      ? 'bg-green-50 text-green-900 border-green-200 hover:bg-green-100'
-                      : 'bg-white text-slate-600 hover:bg-white border-slate-200 hover:border-teal-300 hover:shadow-md'
+                  : isDone
+                    ? 'bg-green-50 text-green-900 border-green-200 hover:bg-green-100'
+                    : 'bg-white text-slate-600 hover:bg-white border-slate-200 hover:border-teal-300 hover:shadow-md'
               }`}
             >
-              <div className={`w-8 h-8 rounded-lg bg-cover bg-center shrink-0 border border-white/20 shadow-sm ${isLocked ? 'grayscale opacity-50' : ''}`} style={{ backgroundImage: `url(${chap.image})` }} />
+              <div className={`w-8 h-8 rounded-lg bg-cover bg-center shrink-0 border border-white/20 shadow-sm`} style={{ backgroundImage: `url(${chap.image})` }} />
               <div className="flex-1">
                 <span className={`font-bold block mb-0.5 ${isCurrent ? 'text-white' : 'text-slate-800'}`}>Capítulo {idx + 1}</span>
                 <span className={`line-clamp-2 leading-tight text-xs ${isCurrent ? 'text-teal-100' : 'text-slate-500'}`}>{chap.title}</span>
@@ -71,6 +66,70 @@ const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }:
     </div>
   </>
 );
+
+const AboutModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-white rounded-2xl max-w-2xl w-full relative shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        <div className="bg-slate-900 p-6 flex justify-between items-center text-white">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
+            <Info className="text-teal-400" /> Sobre esta Plataforma
+          </h2>
+          <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">
+            <X size={24} />
+          </button>
+        </div>
+        
+        <div className="p-8 overflow-y-auto text-slate-600">
+          <p className="text-lg mb-6 leading-relaxed">
+            <strong>EstrategiaSalud</strong> es la evolución digital del <em>Manual de Planificación Estratégica para Instituciones de Salud</em>, desarrollado por la <strong>Universidad Finis Terrae</strong> (Noviembre 2025).
+          </p>
+
+          <div className="grid gap-6">
+            <div className="bg-blue-50 p-5 rounded-xl border border-blue-100">
+              <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+                <Target size={20} /> Propósito
+              </h3>
+              <p className="text-sm text-blue-800">
+                Transformar un texto académico en una <strong>herramienta viva</strong>. Buscamos que equipos directivos y clínicos no solo lean sobre estrategia, sino que aprendan a diseñarla, ejecutarla y evaluarla en un entorno seguro antes de aplicarla en sus instituciones.
+              </p>
+            </div>
+
+            <div className="bg-teal-50 p-5 rounded-xl border border-teal-100">
+              <h3 className="font-bold text-teal-900 mb-2 flex items-center gap-2">
+                <Users size={20} /> Origen Interdisciplinario
+              </h3>
+              <p className="text-sm text-teal-800">
+                Esta plataforma nace de la colaboración entre la <strong>Facultad de Ingeniería</strong> y la <strong>Facultad de Medicina</strong>. Une la gestión técnica con la sensibilidad clínica para cerrar la brecha histórica entre administración y salud.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <h3 className="font-bold text-slate-800">¿Qué puedes hacer aquí?</h3>
+              <ul className="list-disc list-inside text-slate-600 text-sm space-y-1 ml-2">
+                <li>Aprender los 11 capítulos del manual de forma interactiva.</li>
+                <li>Simular la defensa de un plan estratégico con IA.</li>
+                <li>Utilizar herramientas prácticas (FODA, KPIs) en tiempo real.</li>
+                <li>Resolver dudas específicas con un tutor virtual especializado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-6 border-t bg-slate-50 text-center">
+          <button 
+            onClick={onClose}
+            className="px-8 py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-colors shadow-lg"
+          >
+            Entendido, ¡vamos a aprender!
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const FAQSection = () => (
   <div className="relative z-10 max-w-5xl mx-auto border-t border-slate-200 pt-16 mt-16">
@@ -102,73 +161,97 @@ const FAQSection = () => (
   </div>
 );
 
-const HomeView = ({ onStart, onDefense, onFriendly, onTools }: any) => (
-  <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-    <div className="text-center mb-16 relative z-10">
-      <div className="inline-block px-4 py-1.5 rounded-full bg-teal-100 text-teal-800 text-xs font-bold mb-8 uppercase tracking-widest border border-teal-200">
-        Manual U. Finis Terrae 2025
-      </div>
-      <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
-        Planificación Estratégica <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">en Salud</span>
-      </h1>
-      <p className="max-w-2xl mx-auto text-xl text-slate-600 mb-12 leading-relaxed">
-        Plataforma interactiva para dominar la gestión sanitaria. Diagnostica, formula y evalúa estrategias con herramientas prácticas y simulación inteligente.
-      </p>
-      
-      <div className="flex flex-col sm:flex-row justify-center gap-4">
-        <button onClick={onStart} className="px-8 py-4 rounded-xl bg-teal-700 text-white font-bold text-lg hover:bg-teal-800 shadow-xl shadow-teal-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
-          <BookOpen size={20} /> Comenzar Curso
-        </button>
-        <button onClick={onFriendly} className="px-8 py-4 rounded-xl bg-orange-500 text-white font-bold text-lg hover:bg-orange-600 shadow-xl shadow-orange-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
-          <MessageCircleQuestion size={20} /> Tutor de Dudas
-        </button>
-        <button onClick={onDefense} className="px-8 py-4 rounded-xl bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 shadow-xl shadow-indigo-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
-          <BrainCircuit size={20} /> Simulador Defensa
-        </button>
-      </div>
-    </div>
-    
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-      {[
-        { 
-          title: "Módulos de Aprendizaje", 
-          icon: Book, 
-          color: "blue", 
-          onClick: onStart, 
-          desc: "11 Capítulos interactivos desde el Diagnóstico PESTEL hasta la Resiliencia." 
-        },
-        { 
-          title: "Tutor de Dudas", 
-          icon: HelpCircle, 
-          color: "orange", 
-          onClick: onFriendly, 
-          desc: "Asistente amable que responde preguntas y explica conceptos paso a paso." 
-        },
-        { 
-          title: "Kit de Herramientas", 
-          icon: Activity, 
-          color: "green", 
-          onClick: onTools, 
-          desc: "Aplicaciones prácticas: Constructor FODA, KPIs y Comparador de Gestión." 
-        },
-        { 
-          title: "Simulador de Defensa", 
-          icon: BrainCircuit, 
-          color: "indigo", 
-          onClick: onDefense, 
-          desc: "Director Médico Virtual que desafía tus objetivos estratégicos con rigor." 
-        }
-      ].map((card, i) => (
-        <div key={i} className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 hover:shadow-xl transition-all cursor-pointer group hover:-translate-y-1" onClick={card.onClick}>
-          <div className={`bg-${card.color}-50 w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-${card.color}-600 group-hover:scale-110 transition-transform duration-300 shadow-inner`}><card.icon size={24} /></div>
-          <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-teal-700 transition-colors">{card.title}</h3>
-          <p className="text-slate-600 text-sm leading-relaxed">{card.desc}</p>
+const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) => {
+  const [showAbout, setShowAbout] = useState(false);
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div className="text-center mb-16 relative z-10">
+        <div className="inline-block px-4 py-1.5 rounded-full bg-teal-100 text-teal-800 text-xs font-bold mb-8 uppercase tracking-widest border border-teal-200">
+          Manual U. Finis Terrae 2025
         </div>
-      ))}
+        <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
+          Planificación Estratégica <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-blue-600">en Instituciones de Salud</span>
+        </h1>
+        <p className="max-w-2xl mx-auto text-xl text-slate-600 mb-12 leading-relaxed">
+          Plataforma interactiva para dominar la gestión sanitaria. Diagnostica, formula y evalúa estrategias con herramientas prácticas y simulación inteligente.
+        </p>
+        
+        {/* Welcome Button */}
+        <div className="mb-8">
+          <button 
+            onClick={onWelcome}
+            className="px-10 py-4 rounded-full bg-slate-900 text-white font-bold text-lg hover:bg-slate-800 shadow-xl shadow-slate-900/20 flex items-center justify-center gap-3 transition-all hover:scale-105 hover:-translate-y-1 mx-auto border-2 border-slate-700"
+          >
+            <Star className="text-yellow-400 fill-current" /> Página de Bienvenida e Introducción
+          </button>
+        </div>
+
+        {/* Action Buttons Row 1 */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 flex-wrap mb-4">
+          <button onClick={onStart} className="px-8 py-4 rounded-xl bg-teal-700 text-white font-bold text-lg hover:bg-teal-800 shadow-xl shadow-teal-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
+            <BookOpen size={20} /> Contenidos
+          </button>
+          <button onClick={() => setShowAbout(true)} className="px-8 py-4 rounded-xl bg-white text-slate-700 font-bold text-lg border-2 border-slate-200 hover:border-teal-500 hover:text-teal-700 shadow-md flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
+            <Info size={20} /> ¿Qué es esto?
+          </button>
+        </div>
+        
+        {/* Action Buttons Row 2 */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <button onClick={onFriendly} className="px-8 py-4 rounded-xl bg-orange-500 text-white font-bold text-lg hover:bg-orange-600 shadow-xl shadow-orange-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
+            <MessageCircleQuestion size={20} /> Tutor de Dudas
+          </button>
+          <button onClick={onDefense} className="px-8 py-4 rounded-xl bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 shadow-xl shadow-indigo-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
+            <BrainCircuit size={20} /> Habla con el Director
+          </button>
+        </div>
+      </div>
+      
+      <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
+      
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10 mt-20">
+        {[
+          { 
+            title: "Contenidos del Manual", 
+            icon: Book, 
+            color: "blue", 
+            onClick: onStart, 
+            desc: "11 Capítulos interactivos desde el Diagnóstico PESTEL hasta la Resiliencia." 
+          },
+          { 
+            title: "Tutor de Dudas", 
+            icon: HelpCircle, 
+            color: "orange", 
+            onClick: onFriendly, 
+            desc: "Asistente amable que responde preguntas y explica conceptos paso a paso." 
+          },
+          { 
+            title: "Kit de Herramientas", 
+            icon: Activity, 
+            color: "green", 
+            onClick: onTools, 
+            desc: "Aplicaciones prácticas: Constructor FODA, KPIs y Comparador de Gestión." 
+          },
+          { 
+            title: "Habla con el Director", 
+            icon: BrainCircuit, 
+            color: "indigo", 
+            onClick: onDefense, 
+            desc: "Director Médico Virtual que desafía tus objetivos estratégicos con rigor." 
+          }
+        ].map((card, i) => (
+          <div key={i} className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 hover:shadow-xl transition-all cursor-pointer group hover:-translate-y-1" onClick={card.onClick}>
+            <div className={`bg-${card.color}-50 w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-${card.color}-600 group-hover:scale-110 transition-transform duration-300 shadow-inner`}><card.icon size={24} /></div>
+            <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-teal-700 transition-colors">{card.title}</h3>
+            <p className="text-slate-600 text-sm leading-relaxed">{card.desc}</p>
+          </div>
+        ))}
+      </div>
+      <FAQSection />
     </div>
-    <FAQSection />
-  </div>
-);
+  );
+};
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>(ViewState.HOME);
@@ -190,6 +273,7 @@ const App: React.FC = () => {
   };
 
   const goToTools = () => setView(ViewState.TOOLS);
+  const goToWelcome = () => setView(ViewState.WELCOME);
 
   // Calculate Progress
   const totalChapters = CHAPTERS.length;
@@ -197,8 +281,10 @@ const App: React.FC = () => {
   const progressPercent = Math.round((completedCount / totalChapters) * 100);
 
   const Content = () => {
-    if (view === ViewState.HOME) return <HomeView onStart={() => navToChap(0)} onDefense={startDefense} onFriendly={startFriendlyTutor} onTools={goToTools} />;
+    if (view === ViewState.HOME) return <HomeView onStart={() => navToChap(0)} onDefense={startDefense} onFriendly={startFriendlyTutor} onTools={goToTools} onWelcome={goToWelcome} />;
     
+    if (view === ViewState.WELCOME) return <Welcome onStart={() => setView(ViewState.HOME)} />;
+
     if (view === ViewState.LEARN) return (
       <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-8 relative">
         {/* Mobile Toggle */}
@@ -284,6 +370,8 @@ const App: React.FC = () => {
         </section>
       </div>
     );
+
+    if (view === ViewState.CREDITS) return <Credits />;
 
     return <div className="max-w-5xl mx-auto px-4 py-8"><AiTutor initialMode={tutorMode} /></div>;
   };

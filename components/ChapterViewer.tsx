@@ -28,6 +28,8 @@ const ChapterViewer: React.FC<ChapterViewerProps> = ({
   const handleAnswer = (questionId: number, optionIndex: number) => {
     setQuizAnswers(prev => ({...prev, [questionId]: optionIndex}));
     
+    // Optional: still mark complete if they interact with quiz, 
+    // but it's not required for navigation anymore.
     const question = chapter.quiz?.find(q => q.id === questionId);
     if (question) {
       const isCorrect = question.correctAnswer === optionIndex;
@@ -49,7 +51,10 @@ const ChapterViewer: React.FC<ChapterViewerProps> = ({
     setQuizAnswers({});
   };
 
-  const canAdvance = (!chapter.quiz || chapter.quiz.length === 0 || isCompleted);
+  const handleNextClick = () => {
+    if (onComplete) onComplete(); // Mark as read when clicking next
+    if (onNext) onNext();
+  };
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto my-6 border border-slate-200">
@@ -78,7 +83,7 @@ const ChapterViewer: React.FC<ChapterViewerProps> = ({
                 <h3 className="font-bold text-2xl text-slate-800 mb-1 flex items-center gap-2">
                   <HelpCircle className="text-teal-600" size={28}/> Evaluación de Conocimientos
                 </h3>
-                <p className="text-slate-500 text-sm">Responde correctamente para avanzar.</p>
+                <p className="text-slate-500 text-sm">Evaluación formativa (Opcional).</p>
               </div>
               {Object.keys(quizAnswers).length > 0 && (
                 <button 
@@ -200,19 +205,10 @@ const ChapterViewer: React.FC<ChapterViewerProps> = ({
         
         {onNext ? (
           <button 
-            onClick={onNext} 
-            disabled={!canAdvance}
-            className={`flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg transition-all transform shadow-xl ${
-              canAdvance 
-                ? 'bg-gradient-to-r from-teal-600 to-teal-500 text-white hover:from-teal-700 hover:to-teal-600 hover:scale-105 hover:shadow-teal-500/20' 
-                : 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
-            }`}
+            onClick={handleNextClick} 
+            className="flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg transition-all transform shadow-xl bg-gradient-to-r from-teal-600 to-teal-500 text-white hover:from-teal-700 hover:to-teal-600 hover:scale-105 hover:shadow-teal-500/20"
           >
-            {canAdvance ? (
-              <>Siguiente Capítulo <ChevronRight size={24} /></>
-            ) : (
-              <span className="flex items-center gap-2 text-base"><Lock size={18} /> Completa el Quiz para Avanzar</span>
-            )}
+            Siguiente Capítulo <ChevronRight size={24} />
           </button>
         ) : (
           <div className="bg-green-100 text-green-800 px-8 py-3 rounded-xl font-bold flex items-center gap-2 border border-green-200 shadow-sm">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, MessageSquare, PenTool } from 'lucide-react';
+import { BookOpen, MessageSquare, PenTool, Users, Home, Layout } from 'lucide-react';
 import { ViewState } from '../types';
 
 interface HeaderProps {
@@ -8,9 +8,12 @@ interface HeaderProps {
 }
 
 const NAV_ITEMS = [
-  { view: ViewState.LEARN, label: 'Aprender', icon: BookOpen },
+  { view: ViewState.HOME, label: 'Inicio', icon: Layout },
+  { view: ViewState.WELCOME, label: 'Bienvenida', icon: Home },
+  { view: ViewState.LEARN, label: 'Contenidos', icon: BookOpen },
   { view: ViewState.TOOLS, label: 'Herramientas', icon: PenTool },
   { view: ViewState.CHAT, label: 'Tutor IA', icon: MessageSquare },
+  { view: ViewState.CREDITS, label: 'Créditos', icon: Users },
 ];
 
 const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
@@ -25,17 +28,17 @@ const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
             <span className="font-bold text-lg tracking-tight hidden sm:block">EstrategiaSalud</span>
           </div>
           
-          <nav className="flex space-x-2 sm:space-x-4">
+          <nav className="flex space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar">
             {NAV_ITEMS.map(({ view, label, icon: Icon }) => (
               <button 
                 key={view}
                 onClick={() => onNavigate(view)}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 whitespace-nowrap ${
                   currentView === view ? 'bg-teal-800 text-white' : 'text-teal-100 hover:bg-teal-600'
                 }`}
               >
                 <Icon size={18} />
-                <span className="hidden sm:inline">{label}</span>
+                <span className="hidden md:inline">{label}</span>
               </button>
             ))}
           </nav>

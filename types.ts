@@ -1,10 +1,12 @@
 import React from 'react';
 
 export enum ViewState {
+  WELCOME = 'WELCOME',
   HOME = 'HOME',
   LEARN = 'LEARN',
   TOOLS = 'TOOLS',
-  CHAT = 'CHAT'
+  CHAT = 'CHAT',
+  CREDITS = 'CREDITS'
 }
 
 export interface QuizQuestion {
