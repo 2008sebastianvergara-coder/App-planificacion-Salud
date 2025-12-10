@@ -12,10 +12,24 @@ import { ArrowRight, Book, Activity, BrainCircuit, HelpCircle, CheckCircle2 } fr
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>(ViewState.HOME);
   const [currentChapterIdx, setCurrentChapterIdx] = useState(0);
+  // Estado para manejar el modo inicial del tutor (Defensa o Normal)
+  const [tutorStartMode, setTutorStartMode] = useState<'normal' | 'defense'>('normal');
+
+  // Lifted state for completed chapters to persist navigation status
+  const [completedChapters, setCompletedChapters] = useState<{[key: string]: boolean}>({});
 
   const navigateToChapter = (index: number) => {
     setCurrentChapterIdx(index);
     setView(ViewState.LEARN);
+  };
+
+  const handleChapterComplete = (chapterId: string) => {
+    setCompletedChapters(prev => ({...prev, [chapterId]: true}));
+  };
+
+  const startTutorDefenseMode = () => {
+    setTutorStartMode('defense');
+    setView(ViewState.CHAT);
   };
 
   const renderContent = () => {
@@ -41,7 +55,7 @@ const App: React.FC = () => {
                   Comenzar Curso <ArrowRight size={20} />
                 </button>
                 <button 
-                  onClick={() => setView(ViewState.CHAT)}
+                  onClick={startTutorDefenseMode}
                   className="px-8 py-4 rounded-xl bg-white text-slate-700 font-bold border border-slate-200 hover:bg-slate-50 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                 >
                   <BrainCircuit size={20} className="text-purple-600"/> Modo Defensa de Tesis
@@ -129,27 +143,50 @@ const App: React.FC = () => {
       
       case ViewState.LEARN:
         return (
-          <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-            <div className="mb-6 flex overflow-x-auto pb-2 gap-2 hide-scrollbar">
-              {CHAPTERS.map((chap, idx) => (
-                <button
-                  key={chap.id}
-                  onClick={() => setCurrentChapterIdx(idx)}
-                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition shadow-sm ${
-                    idx === currentChapterIdx 
-                      ? 'bg-teal-700 text-white shadow-md' 
-                      : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
-                  }`}
-                >
-                  {chap.title}
-                </button>
-              ))}
+          <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-6">
+            {/* Sidebar Navigation */}
+            <div className="md:w-64 flex-shrink-0 space-y-2">
+              <h3 className="font-bold text-slate-700 px-2 mb-2">Capítulos</h3>
+              <div className="flex flex-col gap-2">
+                {CHAPTERS.map((chap, idx) => {
+                  const isLocked = idx > 0 && !completedChapters[CHAPTERS[idx - 1].id];
+                  return (
+                    <button
+                      key={chap.id}
+                      onClick={() => !isLocked && setCurrentChapterIdx(idx)}
+                      disabled={isLocked}
+                      className={`flex items-center gap-3 p-2 rounded-lg text-sm text-left transition-all ${
+                        idx === currentChapterIdx 
+                          ? 'bg-teal-700 text-white shadow-md' 
+                          : isLocked
+                            ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                            : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
+                      }`}
+                    >
+                      <div 
+                        className="w-10 h-10 rounded bg-cover bg-center shrink-0 border border-black/10"
+                        style={{ backgroundImage: `url(${chap.image})` }}
+                      />
+                      <div className="flex-1">
+                        <span className="line-clamp-2 leading-tight">{chap.title}</span>
+                      </div>
+                      {completedChapters[chap.id] && <CheckCircle2 size={16} className="text-green-500" />}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            <ChapterViewer 
-              chapter={CHAPTERS[currentChapterIdx]} 
-              onNext={currentChapterIdx < CHAPTERS.length - 1 ? () => setCurrentChapterIdx(c => c + 1) : undefined}
-              onPrev={currentChapterIdx > 0 ? () => setCurrentChapterIdx(c => c - 1) : undefined}
-            />
+
+            {/* Main Chapter Content */}
+            <div className="flex-1">
+              <ChapterViewer 
+                chapter={CHAPTERS[currentChapterIdx]} 
+                onNext={currentChapterIdx < CHAPTERS.length - 1 ? () => setCurrentChapterIdx(c => c + 1) : undefined}
+                onPrev={currentChapterIdx > 0 ? () => setCurrentChapterIdx(c => c - 1) : undefined}
+                isCompleted={!!completedChapters[CHAPTERS[currentChapterIdx].id]}
+                onComplete={() => handleChapterComplete(CHAPTERS[currentChapterIdx].id)}
+              />
+            </div>
           </div>
         );
 
@@ -182,7 +219,7 @@ const App: React.FC = () => {
       case ViewState.CHAT:
         return (
           <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-            <AiTutor />
+            <AiTutor initialMode={tutorStartMode} />
           </div>
         );
     }
