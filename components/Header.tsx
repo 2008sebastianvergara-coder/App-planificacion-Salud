@@ -7,6 +7,12 @@ interface HeaderProps {
   onNavigate: (view: ViewState) => void;
 }
 
+const NAV_ITEMS = [
+  { view: ViewState.LEARN, label: 'Aprender', icon: BookOpen },
+  { view: ViewState.TOOLS, label: 'Herramientas', icon: PenTool },
+  { view: ViewState.CHAT, label: 'Tutor IA', icon: MessageSquare },
+];
+
 const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
   return (
     <header className="bg-teal-700 text-white shadow-md sticky top-0 z-50">
@@ -20,27 +26,18 @@ const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
           </div>
           
           <nav className="flex space-x-2 sm:space-x-4">
-            <button 
-              onClick={() => onNavigate(ViewState.LEARN)}
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${currentView === ViewState.LEARN ? 'bg-teal-800 text-white' : 'text-teal-100 hover:bg-teal-600'}`}
-            >
-              <BookOpen size={18} />
-              <span className="hidden sm:inline">Aprender</span>
-            </button>
-            <button 
-              onClick={() => onNavigate(ViewState.TOOLS)}
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${currentView === ViewState.TOOLS ? 'bg-teal-800 text-white' : 'text-teal-100 hover:bg-teal-600'}`}
-            >
-              <PenTool size={18} />
-              <span className="hidden sm:inline">Herramientas</span>
-            </button>
-            <button 
-              onClick={() => onNavigate(ViewState.CHAT)}
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${currentView === ViewState.CHAT ? 'bg-teal-800 text-white' : 'text-teal-100 hover:bg-teal-600'}`}
-            >
-              <MessageSquare size={18} />
-              <span className="hidden sm:inline">Tutor IA</span>
-            </button>
+            {NAV_ITEMS.map(({ view, label, icon: Icon }) => (
+              <button 
+                key={view}
+                onClick={() => onNavigate(view)}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
+                  currentView === view ? 'bg-teal-800 text-white' : 'text-teal-100 hover:bg-teal-600'
+                }`}
+              >
+                <Icon size={18} />
+                <span className="hidden sm:inline">{label}</span>
+              </button>
+            ))}
           </nav>
         </div>
       </div>

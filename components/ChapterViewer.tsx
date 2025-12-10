@@ -6,20 +6,24 @@ interface ChapterViewerProps {
   chapter: Chapter;
   onNext?: () => void;
   onPrev?: () => void;
+  isCompleted?: boolean;
+  onComplete?: () => void;
 }
 
-const ChapterViewer: React.FC<ChapterViewerProps> = ({ chapter, onNext, onPrev }) => {
-  const [showQuiz, setShowQuiz] = useState(false);
+const ChapterViewer: React.FC<ChapterViewerProps> = ({ 
+  chapter, 
+  onNext, 
+  onPrev,
+  isCompleted = false,
+  onComplete 
+}) => {
   const [quizAnswers, setQuizAnswers] = useState<{[key: number]: number}>({});
   const [quizResult, setQuizResult] = useState<{correct: boolean, feedback: string} | null>(null);
-  const [isCompleted, setIsCompleted] = useState(false);
 
   // Reset state when chapter changes
   useEffect(() => {
-    setShowQuiz(false);
     setQuizAnswers({});
     setQuizResult(null);
-    setIsCompleted(false);
   }, [chapter.id]);
 
   const handleAnswer = (questionId: number, optionIndex: number) => {
@@ -33,8 +37,8 @@ const ChapterViewer: React.FC<ChapterViewerProps> = ({ chapter, onNext, onPrev }
         feedback: isCorrect ? "¡Correcto! " + question.explanation : "Incorrecto. " + question.explanation
       });
       
-      if (isCorrect) {
-        setIsCompleted(true);
+      if (isCorrect && onComplete) {
+        onComplete();
       }
     }
   };
