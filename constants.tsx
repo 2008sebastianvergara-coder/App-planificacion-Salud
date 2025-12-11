@@ -2,52 +2,30 @@
 import React from 'react';
 import { Chapter } from './types';
 import { 
-  BookOpen,
-  Target, 
-  Scale, 
-  RefreshCw, 
-  Search, 
-  AlertTriangle, 
-  Users, 
-  Compass, 
-  FileText, 
-  Landmark, 
-  Activity, 
-  BarChart2, 
-  Building2, 
-  ShieldAlert, 
-  CheckCircle,
-  Lightbulb,
-  GitMerge,
-  PieChart
+  BookOpen, Target, Scale, RefreshCw, Search, AlertTriangle, Users, 
+  Compass, FileText, Landmark, Activity, BarChart2, Building2, 
+  ShieldAlert, CheckCircle, Lightbulb, GitMerge, PieChart, Layers, 
+  List, ArrowRight, HeartPulse, Stethoscope, Microscope, Siren,
+  Clock, Database, Globe, Briefcase, Zap
 } from 'lucide-react';
 
 export const KPI_DATABASE = [
-  // Perspectiva Financiera
   { id: 1, text: "Costo promedio por egreso hospitalario", perspective: "Financiera", type: "Eficiencia", explanation: "Mide la eficiencia del gasto (Cap. 9.3.1)." },
   { id: 2, text: "Porcentaje de ejecución presupuestaria anual", perspective: "Financiera", type: "Resultado", explanation: "Clave en hospitales públicos para evitar subejecución (Cap. 10.1)." },
   { id: 3, text: "Ingreso por cama ocupada por día (ICOD)", perspective: "Financiera", type: "Eficiencia", explanation: "Indicador típico de rentabilidad en clínicas privadas (Cap. 10.2)." },
   { id: 4, text: "Gasto de bolsillo promedio por usuario", perspective: "Financiera", type: "Impacto", explanation: "Mide la protección financiera (Cap. 4.2)." },
-
-  // Perspectiva Usuarios/Pacientes
   { id: 5, text: "Net Promoter Score (NPS) en Urgencia", perspective: "Usuarios", type: "Satisfacción", explanation: "Mide la lealtad y satisfacción del paciente (Cap. 6.2.2)." },
   { id: 6, text: "Tiempo de espera para primera consulta", perspective: "Usuarios", type: "Acceso", explanation: "Indicador crítico de oportunidad de atención." },
   { id: 7, text: "Porcentaje de reclamos respondidos en 10 días", perspective: "Usuarios", type: "Calidad", explanation: "Estándar de trato digno y respuesta institucional." },
   { id: 8, text: "Tasa de satisfacción con la hotelería", perspective: "Usuarios", type: "Satisfacción", explanation: "Relevante en clínicas para diferenciación." },
-
-  // Perspectiva Procesos Internos
   { id: 9, text: "Tasa de suspensión de cirugías electivas", perspective: "Procesos", type: "Eficiencia", explanation: "Refleja fallas en la programación o logística (Cap. 9.3)." },
   { id: 10, text: "Porcentaje de ocupación de pabellones", perspective: "Procesos", type: "Eficiencia", explanation: "Uso de capacidad instalada." },
   { id: 11, text: "Tasa de infecciones intrahospitalarias (IAAS)", perspective: "Procesos", type: "Calidad Clínica", explanation: "Indicador de seguridad del paciente (Cap. 3.4.4)." },
   { id: 12, text: "Días estada promedio por GRD", perspective: "Procesos", type: "Eficiencia", explanation: "Gestión clínica de la hospitalización." },
-
-  // Perspectiva Aprendizaje y Crecimiento
   { id: 13, text: "Porcentaje de ausentismo laboral por licencia médica", perspective: "Aprendizaje", type: "Clima", explanation: "Refleja salud mental y clima organizacional (Cap. 7.4)." },
   { id: 14, text: "Tasa de rotación de personal de enfermería", perspective: "Aprendizaje", type: "Retención", explanation: "Impacta la continuidad del cuidado." },
   { id: 15, text: "Horas de capacitación por funcionario al año", perspective: "Aprendizaje", type: "Desarrollo", explanation: "Inversión en capital humano." },
   { id: 16, text: "Adherencia a protocolos de lavado de manos", perspective: "Aprendizaje", type: "Cultura", explanation: "Mide cultura de seguridad." },
-
-  // Perspectiva Valor Social / Salud Pública
   { id: 17, text: "Porcentaje de cobertura de vacunación en población objetivo", perspective: "Valor Social", type: "Impacto", explanation: "Específico de salud pública (Cap. 9.3.1)." },
   { id: 18, text: "Tasa de resolución en Atención Primaria", perspective: "Valor Social", type: "Efectividad", explanation: "Capacidad de la red para resolver sin derivar." },
   { id: 19, text: "Disminución de listas de espera GES vencidas", perspective: "Valor Social", type: "Derechos", explanation: "Cumplimiento de garantías legales." },
@@ -58,473 +36,196 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 'cap1',
     title: '1. Introducción y Contexto',
-    description: 'Propósito, importancia y diferencias estructurales entre salud pública y privada.',
+    description: 'Fundamentos de la planificación estratégica en el ecosistema de salud.',
     image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2070',
     content: (
-      <div className="space-y-8">
+      <div className="space-y-10 font-sans">
         <section>
-          <h3 className="text-xl font-bold text-teal-800 mb-4 flex items-center gap-2">
-            <BookOpen size={24}/> 1.1 Propósito y Sentido Transformador
-          </h3>
+          <h3 className="text-xl font-bold text-teal-800 mb-4 border-b border-teal-100 pb-2">1.1 Propósito</h3>
           <p className="text-slate-700 leading-relaxed mb-4">
-            La planificación estratégica en salud no es un simple trámite administrativo; es una <strong>función directiva esencial</strong>. A diferencia de otros sectores donde se maximiza la rentabilidad, aquí se busca articular visión, recursos y legitimidad social para impactar en la vida y dignidad de las personas.
+            La planificación estratégica en salud no es una herramienta de gestión técnica neutra; es una <strong>función directiva esencial</strong>. Su propósito es articular visión, acción colectiva, recursos y legitimidad social en sistemas complejos. No busca solo eficiencia, sino <strong>impacto sanitario, equidad y sostenibilidad</strong>.
           </p>
-          <div className="bg-teal-50 p-5 rounded-lg border-l-4 border-teal-500 shadow-sm">
-            <strong className="text-teal-900 block mb-2">¿Por qué es crítica? (Cap. 1.2)</strong>
-            <ul className="list-disc list-inside text-sm text-teal-800 space-y-2">
-              <li><strong>Priorización:</strong> Define el uso racional de recursos escasos ante demandas infinitas (listas de espera).</li>
-              <li><strong>Gobernanza:</strong> Alinea a estamentos médicos, administrativos y técnicos bajo un proyecto común.</li>
-              <li><strong>Resiliencia:</strong> Permite anticipar crisis sanitarias y cambios epidemiológicos.</li>
-              <li><strong>Distinción:</strong> Permite separar lo urgente (operativo) de lo importante (estratégico).</li>
-            </ul>
+        </section>
+
+        <section>
+          <h3 className="text-xl font-bold text-teal-800 mb-4 border-b border-teal-100 pb-2">1.2 Importancia</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-teal-500">
+              <strong className="block text-teal-900 mb-1">Priorización de Recursos</strong>
+              <p className="text-sm text-slate-600">Ante demandas infinitas y recursos finitos, define qué es lo urgente y qué es lo importante.</p>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-teal-500">
+              <strong className="block text-teal-900 mb-1">Gobernanza Institucional</strong>
+              <p className="text-sm text-slate-600">Alinea a directivos, clínicos y administrativos bajo un proyecto común, reduciendo la fragmentación.</p>
+            </div>
           </div>
         </section>
-        
-        <section className="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
-          <h4 className="font-bold text-lg mb-6 text-slate-800 border-b pb-2 flex items-center gap-2">
-            <Scale size={20}/> 1.3 Diferencias Estructurales: Público vs. Privado
-          </h4>
-          <p className="text-sm text-slate-600 mb-4">Aunque comparten desafíos clínicos, sus lógicas institucionales difieren:</p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left text-slate-700">
-              <thead className="text-xs text-slate-500 uppercase bg-slate-50">
-                <tr>
-                  <th className="px-4 py-3">Dimensión</th>
-                  <th className="px-4 py-3 text-blue-800 bg-blue-50">Hospital Público</th>
-                  <th className="px-4 py-3 text-indigo-800 bg-indigo-50">Clínica Privada</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                <tr>
-                  <td className="px-4 py-3 font-medium">Naturaleza</td>
-                  <td className="px-4 py-3">Servicio Público, red estatal (SSV).</td>
-                  <td className="px-4 py-3">Derecho privado, holding o sociedad.</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 font-medium">Propósito</td>
-                  <td className="px-4 py-3">Bien común, equidad, mandato legal.</td>
-                  <td className="px-4 py-3">Sostenibilidad, competitividad, valor.</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 font-medium">Financiamiento</td>
-                  <td className="px-4 py-3">Rigidez presupuestaria (DIPRES).</td>
-                  <td className="px-4 py-3">Venta de servicios, eficiencia de costos.</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 font-medium">Gobernanza</td>
-                  <td className="px-4 py-3">Jerárquica, políticamente mediada.</td>
-                  <td className="px-4 py-3">Corporativa, directorios ágiles.</td>
-                </tr>
-              </tbody>
-            </table>
+
+        <section>
+          <h3 className="text-xl font-bold text-teal-800 mb-4 border-b border-teal-100 pb-2">1.3 Diferencias Público vs Privado</h3>
+          <div className="space-y-4">
+            <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+              <h4 className="font-bold text-slate-800 mb-2">1.3.1 Naturaleza Jurídica</h4>
+              <ul className="text-sm space-y-2">
+                <li><span className="text-blue-600 font-bold">Público:</span> Parte de la Red Estatal (SSV), mandato de bien común.</li>
+                <li><span className="text-indigo-600 font-bold">Privado:</span> Derecho privado, lógica de mercado regulado, sostenibilidad financiera.</li>
+              </ul>
+            </div>
+            <div className="bg-teal-50 p-4 rounded-lg border border-teal-200">
+              <h4 className="font-bold text-teal-900 mb-1">1.3.4 Convergencias</h4>
+              <p className="text-sm text-teal-800">Ambos sistemas enfrentan los mismos desafíos epidemiológicos. La planificación es el puente para alianzas público-privadas.</p>
+            </div>
           </div>
         </section>
       </div>
     ),
     quiz: [
       {
-        id: 1,
-        question: "¿Cuál es una diferencia clave en la gobernanza entre hospitales públicos y privados?",
-        options: ["Los privados no tienen directores médicos.", "Los públicos tienen autonomía financiera total.", "Los públicos dependen jerárquicamente del Servicio de Salud.", "Los privados se rigen por el Estatuto Administrativo."],
-        correctAnswer: 2,
-        explanation: "Correcto. La gobernanza pública es jerárquica e integrada a la red estatal (Cap. 1.3.2), limitando su autonomía comparada con los privados."
+        id: 101,
+        question: "La planificación estratégica es solo un trámite administrativo sin impacto real en la salud.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. Es una función directiva esencial para articular visión y recursos, clave para la sostenibilidad y el impacto sanitario (Cap. 1.1)."
+      },
+      {
+        id: 102,
+        question: "Los hospitales públicos tienen autonomía financiera total para invertir sus recursos excedentes.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. Dependen de presupuestos asignados centralmente (DIPRES) y tienen rigidez en el gasto (Cap. 1.3.1)."
+      },
+      {
+        id: 103,
+        question: "La planificación estratégica permite anticipar crisis sanitarias y dejar de actuar solo reactivamente.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. La resiliencia y anticipación son beneficios clave de una buena planificación para no vivir en 'modo incendio' (Cap. 1.2)."
       }
     ]
   },
   {
     id: 'cap2',
     title: '2. Marco Conceptual',
-    description: 'Definiciones operativas, principios de gestión moderna y normativa vigente.',
+    description: 'Definiciones, principios de gestión moderna y normativa.',
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2070',
     content: (
       <div className="space-y-8">
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><Lightbulb size={24}/> 2.1 Definición Operativa</h3>
-          <div className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-xl border border-blue-100 shadow-sm italic text-slate-700 text-lg leading-relaxed">
-            "Proceso sistemático, participativo y orientado al futuro, mediante el cual una organización define su misión, prioridades y estrategias... con el propósito de mejorar la calidad, eficiencia, equidad y sostenibilidad."
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">2.1 Definición</h3>
+          <div className="bg-slate-50 p-6 rounded-xl border-l-4 border-slate-400 text-slate-700 italic">
+            "Proceso sistemático... con el propósito de mejorar la calidad, eficiencia, equidad y sostenibilidad." (2.1.1)
           </div>
         </section>
 
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4">2.2 Principios de Gestión Moderna</h3>
-          <div className="grid md:grid-cols-2 gap-4 text-sm">
-            <div className="p-4 bg-white border border-l-4 border-l-teal-500 rounded shadow-sm hover:shadow-md transition">
-              <strong className="text-teal-800 block mb-1">1. Valor Clínico-Social</strong>
-              <p className="text-slate-600">Transitar de "producir prestaciones" a "lograr resultados en salud" (Value-Based Healthcare).</p>
-            </div>
-            <div className="p-4 bg-white border border-l-4 border-l-purple-500 rounded shadow-sm hover:shadow-md transition">
-              <strong className="text-purple-800 block mb-1">2. Gobernanza Clínica</strong>
-              <p className="text-slate-600">Sistema que asegura calidad y seguridad, empoderando a los equipos clínicos en la decisión.</p>
-            </div>
-            <div className="p-4 bg-white border border-l-4 border-l-orange-500 rounded shadow-sm hover:shadow-md transition">
-              <strong className="text-orange-800 block mb-1">3. Articulación en Red</strong>
-              <p className="text-slate-600">Hospitales como nodos interconectados (RISS), no islas. Coordinación vital con APS.</p>
-            </div>
-            <div className="p-4 bg-white border border-l-4 border-l-blue-500 rounded shadow-sm hover:shadow-md transition">
-              <strong className="text-blue-800 block mb-1">4. Gestión Integrada</strong>
-              <p className="text-slate-600">Alineación total entre lo clínico, financiero, tecnológico y humano.</p>
-            </div>
-          </div>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">2.2 Principios de Gestión</h3>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <li className="bg-white p-3 rounded border shadow-sm"><strong>1. Valor Clínico-Social:</strong> Resultados relevantes para el paciente.</li>
+            <li className="bg-white p-3 rounded border shadow-sm"><strong>2. Gobernanza Clínica:</strong> Decisiones basadas en evidencia.</li>
+            <li className="bg-white p-3 rounded border shadow-sm"><strong>3. Articulación en Red:</strong> No somos islas (RISS).</li>
+            <li className="bg-white p-3 rounded border shadow-sm"><strong>4. Transparencia:</strong> Rendición de cuentas pública.</li>
+          </ul>
         </section>
 
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><Landmark size={24}/> 2.4 Marco Normativo (Chile)</h3>
-          <div className="bg-slate-50 p-4 rounded-lg">
-            <ul className="space-y-3 text-sm text-slate-700">
-              <li className="flex items-start gap-2"><CheckCircle size={16} className="mt-1 text-slate-400"/> <span><strong>Constitución (Art 19 n°9):</strong> Base del derecho a la protección de la salud.</span></li>
-              <li className="flex items-start gap-2"><CheckCircle size={16} className="mt-1 text-slate-400"/> <span><strong>Ley 19.937:</strong> Autoridad Sanitaria y gestión de redes (define roles de SSV y Hospitales).</span></li>
-              <li className="flex items-start gap-2"><CheckCircle size={16} className="mt-1 text-slate-400"/> <span><strong>Ley 20.584:</strong> Derechos y Deberes de los pacientes (marco ético obligatorio).</span></li>
-              <li className="flex items-start gap-2"><CheckCircle size={16} className="mt-1 text-slate-400"/> <span><strong>Estrategia Nacional de Salud (ENS) 2021-2030:</strong> Objetivos sanitarios país que guían a los hospitales.</span></li>
-            </ul>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">2.4 Normativa</h3>
+          <div className="bg-amber-50 p-4 rounded border border-amber-200 text-sm text-amber-900">
+            Los planes deben alinearse con la <strong>Estrategia Nacional de Salud (ENS)</strong> y leyes como la 19.937 (Autoridad Sanitaria) y 20.584 (Derechos y Deberes).
           </div>
         </section>
       </div>
     ),
     quiz: [
       {
-        id: 2,
-        question: "¿Qué implica el principio de 'Gobernanza Clínica'?",
-        options: ["Solo los médicos pueden dirigir.", "Enfoque administrativo puro.", "Asegurar calidad y seguridad empoderando equipos clínicos.", "Maximizar utilidades financieras."],
-        correctAnswer: 2,
-        explanation: "La gobernanza clínica busca asegurar altos estándares de atención mediante el liderazgo distribuido de los equipos de salud, no solo administrativos (Cap. 2.2)."
+        id: 201,
+        question: "La 'Gobernanza Clínica' implica que solo los médicos toman decisiones financieras.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. Busca asegurar calidad y seguridad empoderando a los equipos clínicos en la gestión, no monopolizar las finanzas (Cap. 2.2)."
+      },
+      {
+        id: 202,
+        question: "El principio de integración busca alinear lo clínico, financiero y tecnológico.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. La gestión moderna evita los silos y busca coherencia entre todas las áreas (Cap. 2.2)."
+      },
+      {
+        id: 203,
+        question: "La Ley 19.937 es la normativa que regula la Autoridad Sanitaria y la gestión de redes.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Es la base normativa para la articulación de los Servicios de Salud y hospitales (Cap. 2.4)."
       }
     ]
   },
   {
     id: 'cap3',
     title: '3. Metodología General',
-    description: 'El ciclo de la planificación estratégica: fases, herramientas y participación.',
+    description: 'El ciclo completo de planificación, herramientas y gobernanza.',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2070',
     content: (
       <div className="space-y-8">
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2"><RefreshCw size={24}/> 3.1 Ciclo de Planificación</h3>
-          <p className="mb-6 text-sm text-slate-600 bg-white p-3 rounded border border-slate-100 shadow-sm">
-            El proceso no es lineal, es <strong>iterativo, sistémico y adaptativo</strong>. Se compone de 6 fases críticas:
-          </p>
-          <div className="relative border-l-4 border-teal-200 ml-4 space-y-6 pl-6 py-2">
-            {[
-              {step: "1. Preparación", desc: "Definición del encuadre, conformación del equipo motor y mandato institucional."},
-              {step: "2. Diagnóstico", desc: "Análisis interno (FODA) y externo (PESTEL). Levantamiento de brechas."},
-              {step: "3. Definición Estratégica", desc: "Construcción de Misión, Visión y Valores compartidos."},
-              {step: "4. Formulación", desc: "Diseño de Objetivos Estratégicos y Líneas de Acción."},
-              {step: "5. Implementación", desc: "Gestión del cambio, liderazgo y asignación de recursos."},
-              {step: "6. Evaluación", desc: "Monitoreo de KPI, retroalimentación y aprendizaje continuo."}
-            ].map((f, i) => (
-              <div key={i} className="relative group">
-                <span className="absolute -left-[39px] top-0 bg-teal-100 text-teal-800 w-8 h-8 flex items-center justify-center rounded-full font-bold text-xs border-2 border-white shadow-sm group-hover:bg-teal-600 group-hover:text-white transition-colors">{i + 1}</span>
-                <h4 className="font-bold text-teal-900">{f.step}</h4>
-                <p className="text-sm text-slate-600">{f.desc}</p>
-              </div>
-            ))}
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">3.1 Ciclo de Planificación</h3>
+          <p className="text-sm text-slate-600 mb-4">Proceso iterativo de 6 fases:</p>
+          <div className="grid gap-2">
+            <div className="p-3 bg-white border rounded">1. Preparación y Encuadre</div>
+            <div className="p-3 bg-white border rounded">2. Diagnóstico Estratégico</div>
+            <div className="p-3 bg-white border rounded">3. Definición Estratégica (Misión/Visión)</div>
+            <div className="p-3 bg-white border rounded">4. Formulación (Objetivos)</div>
+            <div className="p-3 bg-white border rounded">5. Implementación</div>
+            <div className="p-3 bg-white border rounded">6. Evaluación</div>
           </div>
         </section>
-
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><Users size={24}/> 3.3 Participación y Gobernanza</h3>
-          <div className="bg-amber-50 p-5 rounded-lg text-sm text-amber-900 border border-amber-100">
-            <strong className="block mb-2 flex items-center gap-2"><AlertTriangle size={16}/> Condición de Éxito</strong>
-            Una planificación sin participación es letra muerta.
-            <ul className="list-disc list-inside mt-3 space-y-1 text-amber-800">
-              <li><strong>Representatividad:</strong> Incluir clínicos, administrativos y comunidad usuaria.</li>
-              <li><strong>Facilitación:</strong> Uso de metodologías ágiles y escucha activa para evitar sesgos.</li>
-              <li><strong>Gobernanza:</strong> Crear un Comité Estratégico que valide y sostenga el proceso.</li>
-            </ul>
-          </div>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">3.3 Participación</h3>
+          <p className="text-sm text-slate-600">
+            Es el factor crítico de éxito. Sin participación de clínicos y usuarios, el plan carece de legitimidad y viabilidad (3.3.1).
+          </p>
         </section>
       </div>
     ),
     quiz: [
       {
-        id: 3,
-        question: "¿Cuál es la primera fase del ciclo de planificación estratégica, antes del diagnóstico?",
-        options: ["Definición de Misión", "Preparación y Encuadre", "Formulación de Objetivos", "Análisis FODA"],
+        id: 301,
+        question: "La etapa de 'Diagnóstico' es la primera fase del ciclo de planificación.",
+        options: ["Verdadero", "Falso"],
         correctAnswer: 1,
-        explanation: "Antes de diagnosticar, es crucial establecer las condiciones: equipo, mandato y alcance del proceso (Cap. 3.1)."
+        explanation: "Falso. La primera fase es la 'Preparación y Encuadre', donde se define el equipo y el mandato antes de diagnosticar (Cap. 3.1)."
+      },
+      {
+        id: 302,
+        question: "La participación de los usuarios y la comunidad es clave para la legitimidad del plan.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Un plan construido a puertas cerradas suele fracasar en su implementación por falta de apoyo social (Cap. 3.3.1)."
+      },
+      {
+        id: 303,
+        question: "La evaluación se realiza únicamente al finalizar el ciclo de 5 años.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. El monitoreo y la evaluación deben ser continuos y periódicos para permitir ajustes (Cap. 3.4)."
       }
     ]
   },
   {
     id: 'cap4',
     title: '4. Diagnóstico Estratégico',
-    description: 'Caracterización, análisis PESTEL, FODA, Brechas Críticas y Stakeholders.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070',
-    content: (
-      <div className="space-y-8">
-        <div className="bg-slate-800 text-white p-4 rounded-lg shadow-md mb-6 italic text-center">
-          "Conocer las entrañas de la organización para navegar aguas turbulentas."
-        </div>
-        
-        <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><Search size={24}/> Análisis Dual</h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="border border-teal-200 rounded-lg bg-teal-50/50 p-5 hover:bg-teal-50 transition">
-              <h4 className="font-bold text-lg text-teal-900 mb-3 border-b border-teal-200 pb-2">Entorno Interno</h4>
-              <ul className="space-y-2 text-sm text-slate-700">
-                <li><strong>Gobernanza:</strong> Claridad de roles y estructura.</li>
-                <li><strong>RRHH:</strong> Clima, competencias, burnout, rotación.</li>
-                <li><strong>Procesos:</strong> Flujos de pacientes, cuellos de botella.</li>
-                <li><strong>Finanzas:</strong> Eficiencia del gasto y deuda.</li>
-              </ul>
-            </div>
-            
-            <div className="border border-indigo-200 rounded-lg bg-indigo-50/50 p-5 hover:bg-indigo-50 transition">
-              <h4 className="font-bold text-lg text-indigo-900 mb-3 border-b border-indigo-200 pb-2">Entorno Externo (PESTEL)</h4>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-white p-2 rounded shadow-sm"><strong>P</strong>olítico: Reformas.</div>
-                <div className="bg-white p-2 rounded shadow-sm"><strong>E</strong>conómico: Inflación.</div>
-                <div className="bg-white p-2 rounded shadow-sm"><strong>S</strong>ocial: Demandas.</div>
-                <div className="bg-white p-2 rounded shadow-sm"><strong>T</strong>ecnológico: IA/Telemedicina.</div>
-                <div className="bg-white p-2 rounded shadow-sm"><strong>E</strong>cológico: Clima.</div>
-                <div className="bg-white p-2 rounded shadow-sm"><strong>L</strong>egal: Normativas.</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="space-y-4">
-          <div className="bg-red-50 p-5 rounded-lg border-l-4 border-red-500 shadow-sm flex gap-4">
-            <AlertTriangle className="text-red-600 shrink-0 mt-1" size={24}/>
-            <div>
-              <h5 className="font-bold text-red-900 mb-1">Concepto Clave: Brecha Crítica</h5>
-              <p className="text-sm text-red-800 leading-relaxed">
-                No es cualquier problema. Es una diferencia <strong>significativa, sostenida y estructural</strong> entre la situación actual y el estándar necesario para cumplir la misión.
-                <br/><span className="italic opacity-80">Ejemplo: "Lista de espera quirúrgica de 2 años vs estándar de 6 meses."</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500 shadow-sm flex gap-4">
-            <Users className="text-blue-600 shrink-0 mt-1" size={24}/>
-            <div>
-              <h5 className="font-bold text-blue-900 mb-1">Análisis de Actores (Modelo de Gardner)</h5>
-              <p className="text-sm text-blue-800 mb-2">Clasificación según Poder e Interés:</p>
-              <div className="grid grid-cols-2 gap-2 text-xs text-blue-900">
-                <div className="bg-white/50 p-1 rounded"><strong>Promotores:</strong> Alto Poder / Alto Interés.</div>
-                <div className="bg-white/50 p-1 rounded"><strong>Latentes:</strong> Alto Poder / Bajo Interés.</div>
-                <div className="bg-white/50 p-1 rounded"><strong>Defensores:</strong> Bajo Poder / Alto Interés.</div>
-                <div className="bg-white/50 p-1 rounded"><strong>Apatéticos:</strong> Bajo Poder / Bajo Interés.</div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    ),
-    quiz: [
-      {
-        id: 4,
-        question: "En el análisis PESTEL, ¿dónde clasificarías la Ley de Fármacos II?",
-        options: ["Tecnológico", "Legal", "Económico", "Ambiental"],
-        correctAnswer: 1,
-        explanation: "Es un factor Legal que obliga a cambios normativos y de procesos en la institución (Cap. 4.2)."
-      }
-    ]
-  },
-  {
-    id: 'cap5',
-    title: '5. Formulación Estratégica',
-    description: 'Definición de Misión, Visión, Valores, Objetivos SMART y Priorización.',
-    image: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=2000',
-    content: (
-      <div className="space-y-8">
-        <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><Target size={24}/> 5.1 La Tríada Identitaria</h3>
-          <div className="grid gap-4 text-sm">
-            <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
-              <strong className="text-teal-700 text-lg block mb-1">Misión (Propósito)</strong>
-              <p className="text-slate-600">¿Quiénes somos y a quién servimos? Debe incluir el propósito sanitario, la población objetivo y el marco ético.</p>
-            </div>
-            <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
-              <strong className="text-teal-700 text-lg block mb-1">Visión (Futuro)</strong>
-              <p className="text-slate-600">¿Qué queremos ser? Imagen a 5-10 años, debe ser transformadora, inspiradora y alcanzable.</p>
-            </div>
-            <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
-              <strong className="text-teal-700 text-lg block mb-1">Valores (Conducta)</strong>
-              <p className="text-slate-600">Principios ético-operativos que guían la toma de decisiones (ej. Calidad, Dignidad, Transparencia).</p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><Compass size={24}/> 5.2 Objetivos SMART</h3>
-          <p className="text-sm text-slate-600 mb-3">Los objetivos transforman la intención en acción medible:</p>
-          <div className="flex flex-wrap gap-2 text-sm">
-            <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full font-bold">Specific</span>
-            <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full font-bold">Measurable</span>
-            <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full font-bold">Achievable</span>
-            <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full font-bold">Relevant</span>
-            <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full font-bold">Time-bound</span>
-          </div>
-          <div className="mt-4 p-4 bg-slate-100 rounded text-xs text-slate-600 font-mono">
-            Incorrecto: "Mejorar la urgencia."<br/>
-            Correcto: "Reducir el tiempo de espera en Triage a menos de 30 min en 12 meses."
-          </div>
-        </section>
-
-        <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><GitMerge size={24}/> 5.3 Priorización</h3>
-          <p className="text-sm text-slate-600 mb-3">Los recursos son finitos. Se debe elegir qué batallas pelear:</p>
-          <ul className="list-disc list-inside text-sm text-teal-800 space-y-2">
-            <li><strong>Matriz Impacto vs Factibilidad:</strong> Descartar lo de "Alto esfuerzo y Bajo impacto". Priorizar "Quick Wins" (Bajo esfuerzo, Alto impacto).</li>
-            <li><strong>Método Hanlon:</strong> Fórmula matemática que pondera (Magnitud + Severidad) x Eficacia x Factibilidad.</li>
-          </ul>
-        </section>
-      </div>
-    ),
-    quiz: [
-      {
-        id: 5,
-        question: "¿Qué característica SMART falta en este objetivo: 'Mejorar considerablemente la atención de urgencia'?",
-        options: ["Específico", "Medible y Temporal", "Relevante", "Alcanzable"],
-        correctAnswer: 1,
-        explanation: "Es ambiguo. No dice 'cuánto' mejorar (Medible) ni 'cuándo' lograrlo (Temporal). Es solo un deseo (Cap. 5.2)."
-      }
-    ]
-  },
-  {
-    id: 'cap6',
-    title: '6. Plan Operativo Estratégico (POE)',
-    description: 'Traducción anual de la estrategia, cronogramas y gestión de recursos.',
-    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2070',
-    content: (
-      <div className="space-y-8">
-        <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><FileText size={24}/> 6.1 Del Horizonte al Terreno</h3>
-          <p className="text-sm text-slate-600 mb-4">
-            El POE es la herramienta que evita que el plan estratégico sea un documento "de biblioteca". Descompone la estrategia en ciclos anuales ejecutables.
-          </p>
-          <table className="w-full text-xs text-left border rounded-lg overflow-hidden">
-            <thead className="bg-slate-800 text-white font-bold">
-              <tr><th className="p-3">Nivel</th><th className="p-3">Horizonte</th><th className="p-3">Función</th></tr>
-            </thead>
-            <tbody className="bg-white">
-              <tr className="border-b"><td className="p-3">Estratégico</td><td className="p-3">3-5 años</td><td className="p-3">Define Rumbo</td></tr>
-              <tr className="border-b"><td className="p-3">Táctico</td><td className="p-3">2-3 años</td><td className="p-3">Organiza decisiones</td></tr>
-              <tr className="bg-teal-50"><td className="p-3 font-bold text-teal-800">Operativo (POE)</td><td className="p-3 font-bold text-teal-800">1 año</td><td className="p-3 font-bold text-teal-800">Ejecuta y monitorea</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><PieChart size={24}/> 6.4 Gestión de Recursos</h3>
-          <div className="bg-orange-50 p-5 rounded-lg border border-orange-200">
-            <p className="text-sm text-orange-900 mb-4 font-medium">No basta con pedir presupuesto. Se deben gestionar cuatro tipos de recursos:</p>
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="bg-white p-3 rounded border border-orange-200 shadow-sm">
-                <strong className="block text-orange-800 mb-1">1. Humanos</strong>
-                Perfiles, cargas de trabajo, competencias.
-              </div>
-              <div className="bg-white p-3 rounded border border-orange-200 shadow-sm">
-                <strong className="block text-orange-800 mb-1">2. Financieros</strong>
-                Inversión, gasto corriente, flujo de caja.
-              </div>
-              <div className="bg-white p-3 rounded border border-orange-200 shadow-sm">
-                <strong className="block text-orange-800 mb-1">3. Tecnológicos</strong>
-                Software, equipos, conectividad.
-              </div>
-              <div className="bg-white p-3 rounded border border-orange-200 shadow-sm">
-                <strong className="block text-orange-800 mb-1">4. Relacionales</strong>
-                Convenios, redes, acuerdos políticos.
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    ),
-    quiz: [
-      {
-        id: 6,
-        question: "¿Cuál es el horizonte temporal típico de un Plan Operativo (POE)?",
-        options: ["5 años", "1 año", "10 años", "Semestral"],
-        correctAnswer: 1,
-        explanation: "El POE es la bajada anual de la estrategia, alineada con el ciclo presupuestario (Cap. 6.1)."
-      }
-    ]
-  },
-  {
-    id: 'cap7',
-    title: '7. Implementación',
-    description: 'Modelos de gobernanza, liderazgo estratégico y gestión del cambio.',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2070',
-    content: (
-      <div className="space-y-8">
-        <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><Landmark size={24}/> 7.1 Gobernanza Hospitalaria</h3>
-          <p className="text-sm text-slate-600 mb-4">La implementación falla sin una estructura de decisión clara. En salud es compleja por la tensión entre la jerarquía administrativa y la autonomía clínica.</p>
-          <div className="bg-white p-4 border rounded-lg shadow-sm">
-            <strong className="text-slate-800 block mb-2">Modelos Típicos:</strong>
-            <ul className="list-disc list-inside text-sm text-slate-700 space-y-1">
-              <li><strong>Jerárquico:</strong> Basado en el control y la norma.</li>
-              <li><strong>Colegiado:</strong> Basado en la participación (Consejos Técnicos).</li>
-              <li><strong>Híbrido:</strong> El más común, mezcla líneas de mando con comités asesores.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><RefreshCw size={24}/> 7.3 Gestión del Cambio (Modelo Kotter)</h3>
-          <p className="text-sm text-slate-600 mb-4">Transformar la cultura institucional requiere método:</p>
-          <div className="bg-indigo-50 p-5 rounded-lg border border-indigo-100">
-            <ol className="list-decimal list-inside text-sm space-y-2 text-indigo-900 font-medium">
-              <li>Crear sentido de <strong>urgencia</strong> (¿por qué cambiar ahora?).</li>
-              <li>Construir una <strong>coalición guía</strong> (líderes formales e informales).</li>
-              <li>Desarrollar una <strong>visión clara</strong>.</li>
-              <li><strong>Comunicar</strong> la visión masivamente.</li>
-              <li><strong>Empoderar</strong> a los equipos para eliminar obstáculos.</li>
-              <li>Generar <strong>victorias a corto plazo</strong> (Quick Wins).</li>
-              <li>Consolidar mejoras y producir más cambio.</li>
-              <li><strong>Anclar</strong> los cambios en la cultura.</li>
-            </ol>
-          </div>
-        </section>
-      </div>
-    ),
-    quiz: [
-      {
-        id: 7,
-        question: "Según el modelo de Kotter, ¿cuál es el primer paso crítico para gestionar el cambio?",
-        options: ["Comunicar la visión", "Crear sentido de urgencia", "Consolidar mejoras", "Formar equipos"],
-        correctAnswer: 1,
-        explanation: "Sin un sentido de urgencia real que saque a la organización de la inercia, ningún esfuerzo posterior prosperará (Cap. 7.3)."
-      }
-    ]
-  },
-  {
-    id: 'cap8',
-    title: '8. Monitoreo y Evaluación',
-    description: 'Indicadores (KPI), periodicidad y sistemas de retroalimentación.',
+    description: 'Caracterización, análisis PESTEL, FODA y Brechas.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070',
     content: (
       <div className="space-y-8">
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><Activity size={24}/> 8.1 Indicadores (KPI)</h3>
-          <p className="text-sm text-slate-600 mb-4 italic">"Lo que no se mide, no se puede gestionar".</p>
-          <div className="grid md:grid-cols-2 gap-4 text-sm">
-            <div className="bg-white p-4 border-l-4 border-purple-500 rounded shadow-sm">
-              <strong className="text-purple-800 text-base">De Proceso</strong>
-              <p className="text-slate-600 mt-1">Miden la ejecución de actividades. <br/><em>Ej: % de funcionarios capacitados.</em></p>
-            </div>
-            <div className="bg-white p-4 border-l-4 border-blue-500 rounded shadow-sm">
-              <strong className="text-blue-800 text-base">De Resultado</strong>
-              <p className="text-slate-600 mt-1">Miden logros directos. <br/><em>Ej: Reducción de días de espera.</em></p>
-            </div>
-            <div className="bg-white p-4 border-l-4 border-green-500 rounded shadow-sm">
-              <strong className="text-green-800 text-base">De Impacto</strong>
-              <p className="text-slate-600 mt-1">Miden efectos a largo plazo en salud. <br/><em>Ej: Disminución de mortalidad materna.</em></p>
-            </div>
-            <div className="bg-white p-4 border-l-4 border-orange-500 rounded shadow-sm">
-              <strong className="text-orange-800 text-base">De Eficiencia</strong>
-              <p className="text-slate-600 mt-1">Relación recursos/logros. <br/><em>Ej: Costo promedio por cama/día.</em></p>
-            </div>
-          </div>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">4.2 Entorno Externo (PESTEL)</h3>
+          <p className="text-sm text-slate-600">Analiza factores Políticos, Económicos, Sociales, Tecnológicos, Ecológicos y Legales que impactan a la institución.</p>
         </section>
-
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><RefreshCw size={24}/> 8.3 Retroalimentación</h3>
-          <div className="bg-slate-50 p-4 rounded-lg">
-            <p className="text-sm text-slate-700 leading-relaxed">
-              El informe de evaluación no es el fin del proceso. Debe ser un "artefacto de gobernanza" que active decisiones correctivas. 
-              Se recomienda usar <strong>tableros visuales (semáforos)</strong> y establecer reuniones trimestrales de revisión.
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">4.4 Brechas Críticas</h3>
+          <div className="bg-red-50 p-4 rounded border-l-4 border-red-500">
+            <p className="text-sm text-red-900">
+              Diferencia significativa y estructural entre la situación actual y el estándar necesario. No es un problema coyuntural.
             </p>
           </div>
         </section>
@@ -532,143 +233,319 @@ export const CHAPTERS: Chapter[] = [
     ),
     quiz: [
       {
-        id: 8,
-        question: "¿Qué tipo de indicador mide cambios estructurales profundos, como la salud poblacional?",
-        options: ["Indicador de Proceso", "Indicador de Eficiencia", "Indicador de Impacto", "Indicador de Satisfacción"],
-        correctAnswer: 2,
-        explanation: "El impacto refleja el fin último de la intervención (ej. reducir mortalidad), a diferencia de los resultados inmediatos o procesos (Cap. 8.1)."
+        id: 401,
+        question: "Una 'Brecha Crítica' es cualquier problema operativo cotidiano que tiene un hospital.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. Es una diferencia ESTRUCTURAL y SOSTENIDA respecto al estándar necesario, no un problema puntual (Cap. 4.4.1)."
+      },
+      {
+        id: 402,
+        question: "El análisis PESTEL se utiliza para evaluar el entorno externo de la organización.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. PESTEL analiza factores Políticos, Económicos, Sociales, etc., que están fuera del control directo (Cap. 4.2)."
+      },
+      {
+        id: 403,
+        question: "El análisis de actores (stakeholders) clasifica según Poder e Interés.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Es fundamental para gestionar la viabilidad política de la estrategia (Cap. 4.4.6)."
+      }
+    ]
+  },
+  {
+    id: 'cap5',
+    title: '5. Formulación Estratégica',
+    description: 'Misión, Visión, Valores y Objetivos SMART.',
+    image: 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=2000',
+    content: (
+      <div className="space-y-8">
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">5.1 Identidad</h3>
+          <ul className="text-sm space-y-2">
+            <li><strong>Misión:</strong> Propósito presente. ¿Quiénes somos?</li>
+            <li><strong>Visión:</strong> Futuro deseado. ¿Qué queremos ser?</li>
+          </ul>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">5.2 Objetivos SMART</h3>
+          <p className="text-sm text-slate-600">Deben ser: Específicos, Medibles, Alcanzables, Relevantes y Temporales.</p>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">5.3 Priorización</h3>
+          <p className="text-sm text-slate-600">Herramientas: Matriz de Impacto/Factibilidad y Método Hanlon.</p>
+        </section>
+      </div>
+    ),
+    quiz: [
+      {
+        id: 501,
+        question: "La Misión define lo que la institución aspira a ser en el futuro (10 años).",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. La 'Misión' define el propósito presente. La 'Visión' es la que proyecta el futuro deseado (Cap. 5.1)."
+      },
+      {
+        id: 502,
+        question: "Un objetivo es SMART si tiene un plazo definido (Temporal).",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. La 'T' de SMART se refiere a 'Time-bound' (Temporal), esencial para la evaluabilidad (Cap. 5.2.3)."
+      },
+      {
+        id: 503,
+        question: "La matriz de impacto/factibilidad ayuda a priorizar y descartar proyectos de bajo impacto y alto esfuerzo.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Permite concentrar recursos en los 'Quick Wins' y proyectos estratégicos viables (Cap. 5.3)."
+      }
+    ]
+  },
+  {
+    id: 'cap6',
+    title: '6. Plan Operativo (POE)',
+    description: 'Traducción anual, cronogramas y recursos.',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2070',
+    content: (
+      <div className="space-y-8">
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">6.1 Definición</h3>
+          <p className="text-sm text-slate-600">El POE traduce la estrategia a acciones anuales concretas. Su horizonte es de 1 año.</p>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">6.4 Recursos</h3>
+          <p className="text-sm text-slate-600">Es vital alinear el POE con el presupuesto (DIPRES en público) y gestionar recursos humanos y tecnológicos.</p>
+        </section>
+      </div>
+    ),
+    quiz: [
+      {
+        id: 601,
+        question: "El Plan Operativo Estratégico (POE) tiene un horizonte de planificación de 5 años.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. El POE es anual (1 año), es la bajada táctica inmediata de la estrategia de largo plazo (Cap. 6.1)."
+      },
+      {
+        id: 602,
+        question: "Todo plan operativo debe tener asignado un responsable y recursos claros.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Sin responsable ni recursos, una acción es solo un deseo y no se puede ejecutar (Cap. 6.1.3)."
+      },
+      {
+        id: 603,
+        question: "Los indicadores de eficiencia relacionan los recursos utilizados con los logros obtenidos.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Miden qué tan bien se utilizan los recursos para alcanzar los resultados (Cap. 6.2)."
+      }
+    ]
+  },
+  {
+    id: 'cap7',
+    title: '7. Implementación',
+    description: 'Gobernanza, liderazgo y gestión del cambio.',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2070',
+    content: (
+      <div className="space-y-8">
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">7.1 Gobernanza</h3>
+          <p className="text-sm text-slate-600">Estructuras formales para tomar decisiones. En hospitales suele ser híbrida (jerárquica + comités).</p>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">7.3 Gestión del Cambio</h3>
+          <p className="text-sm text-slate-600">Modelo de Kotter: comienza creando un "Sentido de Urgencia" real.</p>
+        </section>
+      </div>
+    ),
+    quiz: [
+      {
+        id: 701,
+        question: "Crear 'Sentido de Urgencia' es el primer paso para gestionar el cambio según Kotter.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Sin urgencia, la inercia organizacional impide el cambio (Cap. 7.3)."
+      },
+      {
+        id: 702,
+        question: "La gobernanza híbrida mezcla estructuras jerárquicas con comités participativos.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Es el modelo más común en hospitales modernos para equilibrar control y participación (Cap. 7.1)."
+      },
+      {
+        id: 703,
+        question: "La alineación estratégica solo es necesaria para los cargos directivos.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. Es crucial alinear a todo el personal, especialmente a los equipos clínicos que ejecutan la estrategia (Cap. 7.4)."
+      }
+    ]
+  },
+  {
+    id: 'cap8',
+    title: '8. Monitoreo y Evaluación',
+    description: 'Indicadores (KPI) y retroalimentación.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070',
+    content: (
+      <div className="space-y-8">
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">8.1 Indicadores</h3>
+          <p className="text-sm text-slate-600">Tipos: Proceso, Resultado, Impacto, Eficiencia. "Lo que no se mide no se gestiona".</p>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">8.3 Retroalimentación</h3>
+          <p className="text-sm text-slate-600">El monitoreo debe activar decisiones, no solo generar informes.</p>
+        </section>
+      </div>
+    ),
+    quiz: [
+      {
+        id: 801,
+        question: "Los indicadores de impacto miden los efectos a largo plazo en la salud de la población.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Miden el cambio final (ej. mortalidad), a diferencia de los de proceso (Cap. 8.1)."
+      },
+      {
+        id: 802,
+        question: "La retroalimentación debe ser punitiva para corregir errores rápidamente.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. Debe estar orientada al aprendizaje y la mejora continua, no al castigo (Cap. 8.3)."
+      },
+      {
+        id: 803,
+        question: "Se sugiere realizar evaluaciones tácticas trimestrales para ajustar el rumbo.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Permite corregir desviaciones antes de que sea tarde (Cap. 8.2)."
       }
     ]
   },
   {
     id: 'cap9',
     title: '9. Herramientas de Apoyo',
-    description: 'Balanced Scorecard (BSC) adaptado a Salud, Checklists y Talleres.',
+    description: 'BSC, Checklists y Talleres.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2015',
     content: (
       <div className="space-y-8">
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><BarChart2 size={24}/> 9.3 Balanced Scorecard (BSC) en Salud</h3>
-          <p className="text-sm text-slate-600 mb-4">Adaptación del modelo de Kaplan & Norton. En salud, se recomienda agregar una <strong>quinta perspectiva</strong>:</p>
-          <div className="space-y-2 text-sm">
-            <div className="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded shadow-sm">
-              <span className="bg-slate-200 text-slate-700 w-6 h-6 flex items-center justify-center rounded-full font-bold text-xs">1</span>
-              <span><strong>Financiera:</strong> Sostenibilidad y eficiencia.</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded shadow-sm">
-              <span className="bg-slate-200 text-slate-700 w-6 h-6 flex items-center justify-center rounded-full font-bold text-xs">2</span>
-              <span><strong>Usuarios/Pacientes:</strong> Satisfacción y acceso.</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded shadow-sm">
-              <span className="bg-slate-200 text-slate-700 w-6 h-6 flex items-center justify-center rounded-full font-bold text-xs">3</span>
-              <span><strong>Procesos Internos:</strong> Calidad y seguridad clínica.</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded shadow-sm">
-              <span className="bg-slate-200 text-slate-700 w-6 h-6 flex items-center justify-center rounded-full font-bold text-xs">4</span>
-              <span><strong>Aprendizaje:</strong> Capital humano y tecnología.</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-teal-50 border border-teal-200 rounded shadow-sm">
-              <span className="bg-teal-600 text-white w-6 h-6 flex items-center justify-center rounded-full font-bold text-xs">5</span>
-              <span className="text-teal-800"><strong>Valor Social / Salud Pública:</strong> Impacto sanitario en la población.</span>
-            </div>
-          </div>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">9.3 BSC en Salud</h3>
+          <p className="text-sm text-slate-600">Agrega una quinta perspectiva: <strong>Valor Social / Salud Pública</strong>.</p>
         </section>
-
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><FileText size={24}/> 9.4 Checklists y Talleres</h3>
-          <p className="text-sm text-slate-600">Herramientas operativas esenciales para asegurar que la planificación no dependa solo de la memoria y para fomentar la co-creación con los equipos.</p>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">9.4 Operatividad</h3>
+          <p className="text-sm text-slate-600">Checklists para asegurar procesos y talleres para participación.</p>
         </section>
       </div>
     ),
     quiz: [
       {
-        id: 9,
-        question: "¿Qué perspectiva es distintiva del BSC adaptado a salud pública?",
-        options: ["Financiera", "Valor Social / Salud Pública", "Procesos Internos", "Clientes"],
+        id: 901,
+        question: "El BSC adaptado a salud pública agrega la perspectiva de 'Valor Social'.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Mide el cumplimiento del mandato sanitario más allá de lo financiero (Cap. 9.3)."
+      },
+      {
+        id: 902,
+        question: "Los mapas estratégicos reemplazan la necesidad de realizar un análisis FODA.",
+        options: ["Verdadero", "Falso"],
         correctAnswer: 1,
-        explanation: "La perspectiva de Valor Social mide el impacto final en la salud de la población, que es el propósito último del sector público, más allá de lo financiero (Cap. 9.3)."
+        explanation: "Falso. Son herramientas complementarias; el FODA es diagnóstico, el mapa visualiza la estrategia (Cap. 9.1)."
+      },
+      {
+        id: 903,
+        question: "Los checklists son útiles para asegurar la ejecución de pasos críticos en la planificación.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Ayudan a ordenar y no olvidar etapas clave del proceso (Cap. 9.4)."
       }
     ]
   },
   {
     id: 'cap10',
     title: '10. Consideraciones Diferenciadas',
-    description: 'Profundización en las lógicas de gestión pública y privada.',
+    description: 'Público vs. Privado.',
     image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2053',
     content: (
       <div className="space-y-8">
-        <p className="text-slate-600 mb-6 text-sm">Aunque la metodología base es similar, las restricciones y motores de cada sector son distintos.</p>
-        
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 bg-blue-50 rounded-xl border border-blue-200 shadow-sm">
-            <h4 className="font-bold text-blue-900 mb-4 flex items-center gap-2 border-b border-blue-200 pb-2"><Building2 size={20}/> 10.1 Instituciones Públicas</h4>
-            <ul className="text-sm space-y-3 text-blue-800">
-              <li><strong>Mandato:</strong> Garantizar derechos constitucionales (Ley 19.937).</li>
-              <li><strong>Red:</strong> Articulación obligatoria con APS y niveles de complejidad.</li>
-              <li><strong>Restricciones:</strong> Rigidez presupuestaria extrema y compras públicas reguladas.</li>
-              <li><strong>Oportunidad:</strong> Capacidad de impacto poblacional masivo.</li>
-            </ul>
-          </div>
-          
-          <div className="p-6 bg-indigo-50 rounded-xl border border-indigo-200 shadow-sm">
-            <h4 className="font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-2"><Activity size={20}/> 10.2 Instituciones Privadas</h4>
-            <ul className="text-sm space-y-3 text-indigo-800">
-              <li><strong>Lógica:</strong> Mercado regulado y libre elección.</li>
-              <li><strong>Foco:</strong> Experiencia usuaria, fidelización, marca y eficiencia.</li>
-              <li><strong>Flexibilidad:</strong> Mayor agilidad en inversiones, contratación e innovación.</li>
-              <li><strong>Desafío:</strong> Conciliar rentabilidad económica con ética clínica.</li>
-            </ul>
-          </div>
-        </div>
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">10.1 Público</h3>
+          <p className="text-sm text-slate-600">Restricción clave: Rigidez presupuestaria y mandato de derechos.</p>
+        </section>
+        <section>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">10.2 Privado</h3>
+          <p className="text-sm text-slate-600">Foco: Experiencia usuaria, fidelización y eficiencia.</p>
+        </section>
       </div>
     ),
     quiz: [
       {
-        id: 10,
-        question: "¿Cuál es una restricción estructural clave en la planificación de hospitales públicos?",
-        options: ["Falta de pacientes", "Rigidez presupuestaria", "Ausencia de normativas", "Exceso de autonomía"],
+        id: 1001,
+        question: "La rigidez presupuestaria es una limitación clave en la planificación de hospitales públicos.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Dependen de asignaciones centrales y tienen poco margen de maniobra financiera (Cap. 10.1)."
+      },
+      {
+        id: 1002,
+        question: "El sector privado no necesita cumplir con normativas sanitarias nacionales.",
+        options: ["Verdadero", "Falso"],
         correctAnswer: 1,
-        explanation: "La dependencia de presupuestos anuales fijados centralmente (DIPRES) limita la flexibilidad para reasignar recursos rápidamente (Cap. 10.1)."
+        explanation: "Falso. Todos los prestadores deben cumplir con la autoridad sanitaria y la ley (Cap. 10.2)."
+      },
+      {
+        id: 1003,
+        question: "La fidelización de pacientes es un desafío estratégico central para las clínicas privadas.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. En un mercado competitivo, la experiencia y lealtad del usuario son claves (Cap. 10.2)."
       }
     ]
   },
   {
     id: 'cap11',
     title: '11. Conclusiones y Resiliencia',
-    description: 'Sostenibilidad, resiliencia ante crisis y recomendaciones finales.',
+    description: 'Sostenibilidad y Resiliencia.',
     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2073',
     content: (
       <div className="space-y-8">
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><ShieldAlert size={24}/> 11.3 Resiliencia en Crisis</h3>
-          <div className="bg-green-50 p-6 rounded-lg border border-green-200 shadow-sm">
-            <p className="text-sm text-green-900 italic mb-4 font-medium">"La capacidad de absorber el shock, reorganizarse y seguir funcionando."</p>
-            <div className="grid gap-3 text-sm text-green-800">
-              <div className="flex items-center gap-2"><div className="w-2 h-2 bg-green-500 rounded-full"></div><strong>Absorción:</strong> Mantener operaciones críticas durante el evento.</div>
-              <div className="flex items-center gap-2"><div className="w-2 h-2 bg-green-500 rounded-full"></div><strong>Adaptación:</strong> Reorganizar recursos rápidamente (ej. camas UCI en pandemia).</div>
-              <div className="flex items-center gap-2"><div className="w-2 h-2 bg-green-500 rounded-full"></div><strong>Transformación:</strong> Aprender de la crisis para mejorar estructuralmente.</div>
-            </div>
-          </div>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">11.3 Resiliencia</h3>
+          <p className="text-sm text-slate-600">Capacidades: Absorción (resistir), Adaptación (reorganizar), Transformación (aprender).</p>
         </section>
-
         <section>
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><CheckCircle size={24}/> 11.2 Sostenibilidad</h3>
-          <p className="text-sm text-slate-600 mb-4">Para que la estrategia no muera en el papel:</p>
-          <ul className="list-disc list-inside text-sm text-slate-700 bg-white p-4 rounded border border-slate-200">
-            <li><strong>Institucionalizar:</strong> Convertir el ciclo en rutina anual.</li>
-            <li><strong>Trazabilidad:</strong> Documentar decisiones para no depender de la memoria de las personas.</li>
-            <li><strong>Capacidad Interna:</strong> Formar equipos propios, no depender siempre de consultores externos.</li>
-          </ul>
+          <h3 className="text-xl font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">11.2 Sostenibilidad</h3>
+          <p className="text-sm text-slate-600">Clave: Desarrollar capacidad interna propia, no depender siempre de externos.</p>
         </section>
       </div>
     ),
     quiz: [
       {
-        id: 11,
-        question: "¿Qué implica la 'capacidad de adaptación' en la resiliencia hospitalaria?",
-        options: ["Resistir sin cambiar nada", "Cerrar el hospital", "Reorganizar recursos y funciones según el nuevo contexto", "Esperar instrucciones centrales"],
-        correctAnswer: 2,
-        explanation: "La adaptación implica flexibilidad operativa para modificar flujos y recursos ante la emergencia, como convertir pabellones en UCIs (Cap. 11.3)."
+        id: 1101,
+        question: "La resiliencia hospitalaria incluye la capacidad de transformar y aprender de las crisis.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. No es solo resistir, sino mejorar estructuralmente post-crisis (Cap. 11.3)."
+      },
+      {
+        id: 1102,
+        question: "Para ser sostenible, la planificación debe depender siempre de consultores externos.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 1,
+        explanation: "Falso. La sostenibilidad requiere desarrollar capacidades internas en los equipos propios (Cap. 11.2)."
+      },
+      {
+        id: 1103,
+        question: "La capacidad de adaptación implica reorganizar recursos rápidamente ante una emergencia.",
+        options: ["Verdadero", "Falso"],
+        correctAnswer: 0,
+        explanation: "Verdadero. Es la flexibilidad operativa necesaria en crisis (Cap. 11.3)."
       }
     ]
   }

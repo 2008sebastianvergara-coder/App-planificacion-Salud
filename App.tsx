@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from './components/Header';
 import ChapterViewer from './components/ChapterViewer';
@@ -23,17 +24,18 @@ const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }:
     
     {/* Sidebar Container */}
     <div className={`
-      fixed md:static inset-y-0 left-0 z-50 w-72 bg-white md:bg-transparent shadow-2xl md:shadow-none 
+      fixed inset-y-0 left-0 z-50 w-72 bg-white md:bg-transparent shadow-2xl md:shadow-none 
       transform transition-transform duration-300 ease-in-out md:transform-none flex flex-col
       ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+      md:sticky md:top-20 md:h-[calc(100vh-5rem)]
     `}>
       <div className="p-4 md:hidden flex justify-between items-center border-b">
         <span className="font-bold text-slate-800">Índice del Curso</span>
         <button onClick={onClose} className="p-2 text-slate-500 hover:bg-slate-100 rounded-full"><X size={24}/></button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 md:p-0 space-y-3">
-        <h3 className="font-bold text-slate-700 mb-2 hidden md:block px-1">Índice de Contenidos</h3>
+      <div className="flex-1 overflow-y-auto p-4 md:p-0 space-y-3 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent pr-2 pb-20">
+        <h3 className="font-bold text-slate-700 mb-4 hidden md:block px-1 pt-6 text-sm uppercase tracking-wider">Índice de Contenidos</h3>
         {chapters.map((chap: any, idx: number) => {
           const isCurrent = idx === currentIdx;
           const isDone = completed[chap.id];

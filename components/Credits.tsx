@@ -28,7 +28,7 @@ const TEAM = [
     color: "bg-emerald-100 text-emerald-700"
   },
   { 
-    name: "Sebastian Vergara", 
+    name: "Sebastián Vergara", 
     role: "Asistente de Investigación", 
     icon: Code,
     color: "bg-orange-100 text-orange-700"
