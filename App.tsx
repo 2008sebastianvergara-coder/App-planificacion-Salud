@@ -10,7 +10,7 @@ import Credits from './components/Credits';
 import Welcome from './components/Welcome';
 import { ViewState } from './types';
 import { CHAPTERS } from './constants';
-import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star } from 'lucide-react';
+import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star, Download } from 'lucide-react';
 
 const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }: any) => (
   <>
@@ -186,7 +186,7 @@ const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) =
             onClick={onWelcome}
             className="px-10 py-4 rounded-full bg-slate-900 text-white font-bold text-lg hover:bg-slate-800 shadow-xl shadow-slate-900/20 flex items-center justify-center gap-3 transition-all hover:scale-105 hover:-translate-y-1 mx-auto border-2 border-slate-700"
           >
-            <Star className="text-yellow-400 fill-current" /> Página de Bienvenida e Introducción
+            <Star className="text-yellow-400 fill-current" /> Bienvenida e Introducción
           </button>
         </div>
 
@@ -195,6 +195,7 @@ const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) =
           <button onClick={onStart} className="px-8 py-4 rounded-xl bg-teal-700 text-white font-bold text-lg hover:bg-teal-800 shadow-xl shadow-teal-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
             <BookOpen size={20} /> Contenidos
           </button>
+          
           <button onClick={() => setShowAbout(true)} className="px-8 py-4 rounded-xl bg-white text-slate-700 font-bold text-lg border-2 border-slate-200 hover:border-teal-500 hover:text-teal-700 shadow-md flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
             <Info size={20} /> ¿Qué es esto?
           </button>
@@ -208,6 +209,18 @@ const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) =
           <button onClick={onDefense} className="px-8 py-4 rounded-xl bg-indigo-600 text-white font-bold text-lg hover:bg-indigo-700 shadow-xl shadow-indigo-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1">
             <BrainCircuit size={20} /> Habla con el Director
           </button>
+        </div>
+
+        {/* Action Buttons Row 3 - Download PDF */}
+        <div className="flex justify-center mb-12">
+           <a 
+            href="https://drive.google.com/file/d/1AOQBldDyOxo5IdhwIFbBZpGv-X496w7S/view?usp=sharing" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 rounded-xl bg-slate-800 text-white font-bold text-lg hover:bg-slate-900 shadow-xl shadow-slate-900/10 flex items-center justify-center gap-2 transition-all hover:scale-105 hover:-translate-y-1 w-full sm:w-auto"
+          >
+            <Download size={20} /> Descargar Manual de Planificación Estratégica (PDF)
+          </a>
         </div>
       </div>
       
