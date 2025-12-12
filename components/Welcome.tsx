@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight, Book, Building2, Users } from 'lucide-react';
 
@@ -17,7 +18,7 @@ const Welcome: React.FC<{ onStart: () => void }> = ({ onStart }) => {
               Manual de Planificación Estratégica<br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 to-blue-200">para Instituciones de Salud</span>
             </h1>
-            <p className="text-xl text-slate-300 font-light mb-8">Noviembre 2025</p>
+            <p className="text-xl text-slate-300 font-light mb-8">2025</p>
             
             <div className="flex justify-center gap-8 text-sm md:text-base font-medium text-slate-200">
               <div className="flex items-center gap-2">

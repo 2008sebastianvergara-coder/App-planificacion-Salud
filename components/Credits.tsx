@@ -67,7 +67,7 @@ const Credits: React.FC = () => {
         <h4 className="font-bold text-slate-700 mb-2">Universidad Finis Terrae</h4>
         <p className="text-sm text-slate-500">
           Proyecto conjunto Facultad de Ingeniería y Facultad de Medicina<br/>
-          Noviembre 2025
+          2025
         </p>
       </div>
     </div>
