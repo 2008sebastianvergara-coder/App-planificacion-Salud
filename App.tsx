@@ -10,7 +10,7 @@ import Credits from './components/Credits';
 import Welcome from './components/Welcome';
 import { ViewState } from './types';
 import { CHAPTERS } from './constants';
-import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star, Download } from 'lucide-react';
+import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star, Download, Mail, Phone, MapPin } from 'lucide-react';
 
 const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }: any) => (
   <>
@@ -163,6 +163,50 @@ const FAQSection = () => (
   </div>
 );
 
+const ContactSection = () => (
+  <div className="relative z-10 max-w-5xl mx-auto border-t border-slate-200 pt-16 mt-16 text-center">
+    <h2 className="text-3xl font-bold text-slate-800 flex items-center justify-center gap-3 mb-8">
+      <Mail className="text-teal-600" size={32} /> Contacto
+    </h2>
+    <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col md:flex-row items-center justify-around gap-8">
+      <div className="text-center">
+        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+          <Mail size={24} />
+        </div>
+        <h4 className="font-bold text-slate-800 mb-2">Correo Electrónico</h4>
+        <span className="text-slate-600 font-medium block mb-4">jrosales@uft.cl</span>
+      </div>
+
+      <div className="hidden md:block w-px h-32 bg-slate-100"></div>
+
+      <div className="text-center">
+        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+          <Phone size={24} />
+        </div>
+        <h4 className="font-bold text-slate-800 mb-2">Teléfono / WhatsApp</h4>
+        <span className="text-slate-600 font-medium block">+56 9 8410 6372</span>
+      </div>
+
+      <div className="hidden md:block w-px h-32 bg-slate-100"></div>
+
+      <div className="text-center">
+        <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 text-orange-600">
+          <MapPin size={24} />
+        </div>
+        <h4 className="font-bold text-slate-800 mb-2">Ubicación</h4>
+        <a 
+          href="https://www.google.com/maps/search/?api=1&query=Avenida+Pedro+de+Valdivia+1509,+Providencia" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-slate-600 hover:text-teal-600 text-sm max-w-[200px] block mx-auto leading-relaxed"
+        >
+          Avenida Pedro de Valdivia 1509, Providencia, Chile
+        </a>
+      </div>
+    </div>
+  </div>
+);
+
 const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) => {
   const [showAbout, setShowAbout] = useState(false);
 
@@ -265,6 +309,7 @@ const HomeView = ({ onStart, onDefense, onFriendly, onTools, onWelcome }: any) =
         ))}
       </div>
       <FAQSection />
+      <ContactSection />
     </div>
   );
 };
@@ -404,8 +449,39 @@ const App: React.FC = () => {
           onChatDefense={startDefense}
         />
         <main className="flex-1"><Content /></main>
-        <footer className="bg-slate-900 text-slate-400 py-8 text-center text-sm border-t border-slate-800 mt-12">
-          <div className="flex flex-col items-center gap-2">
+        
+        {/* FOOTER ACTUALIZADO */}
+        <footer className="bg-slate-900 text-slate-400 py-12 text-center text-sm border-t border-slate-800 mt-12">
+          <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8 mb-10">
+             {/* Columna Contacto */}
+             <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                <h3 className="text-white font-bold mb-4 flex items-center gap-2"><Mail size={16} /> Contacto</h3>
+                <span className="text-slate-300 mb-2 block">jrosales@uft.cl</span>
+                <span className="text-slate-300 block">+56 9 8410 6372</span>
+             </div>
+
+             {/* Columna Ubicación */}
+             <div className="flex flex-col items-center text-center">
+                <h3 className="text-white font-bold mb-4 flex items-center gap-2"><MapPin size={16} /> Ubicación</h3>
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=Avenida+Pedro+de+Valdivia+1509,+Providencia" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-slate-300 hover:text-white transition-colors max-w-xs mx-auto"
+                >
+                  Avenida Pedro de Valdivia 1509, Providencia, Chile
+                </a>
+             </div>
+
+             {/* Columna Institucional */}
+             <div className="flex flex-col items-center md:items-end text-center md:text-right">
+                <h3 className="text-white font-bold mb-4">EstrategiaSalud</h3>
+                <p className="text-slate-500 mb-2">Universidad Finis Terrae</p>
+                <p className="text-xs text-slate-600">Facultad de Ingeniería & Medicina</p>
+             </div>
+          </div>
+
+          <div className="border-t border-slate-800 pt-8 flex flex-col items-center gap-2">
             <p>© 2025 EstrategiaSalud</p>
             <p className="text-xs opacity-50">Manual de Planificación Estratégica para Instituciones de Salud</p>
           </div>
