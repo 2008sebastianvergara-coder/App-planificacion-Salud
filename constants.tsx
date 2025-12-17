@@ -142,7 +142,7 @@ export const CHAPTERS: Chapter[] = [
         <h3 className="text-xl font-bold text-slate-900 mt-8">2.2 Principios de gestión hospitalaria moderna</h3>
         <p>La gestión hospitalaria moderna ha evolucionado desde un modelo burocrático-administrativo hacia enfoques más dinámicos y centrados en el valor:</p>
         <ul className="list-disc pl-6 space-y-2">
-          <li><strong>Gestión por Procesos Asistenciales:</strong> Entender la atención como un flujo continuo que atraviesa servicios (urgencia -&gt; pabellón -&gt; UCI), rompiendo la lógica de compartimentos estancos.</li>
+          <li><strong>Gestión por Procesos Asistenciales:</strong> Entender la atención como un flujo continuo que atraviesa servicios (urgencia &rarr; pabellón &rarr; UCI), rompiendo la lógica de compartimentos estancos.</li>
           <li><strong>Gobernanza Clínica:</strong> Involucrar activamente a los profesionales de la salud en la gestión de recursos, calidad y seguridad, compartiendo la responsabilidad de los resultados.</li>
           <li><strong>Orientación al Valor (Value-Based Healthcare):</strong> El objetivo no es solo producir prestaciones (volumen), sino lograr los mejores resultados de salud percibidos por el paciente en relación con el costo (valor).</li>
           <li><strong>Transformación Digital e Inteligencia Sanitaria:</strong> Uso intensivo de datos clínicos y administrativos (Big Data, IA) para la toma de decisiones basada en evidencia (sistemas SIDRA, GRD, RISS).</li>
@@ -168,7 +168,7 @@ export const CHAPTERS: Chapter[] = [
         <p>El manual establece 4 principios que separan la administración tradicional burocrática de la gestión estratégica moderna:</p>
         <div className="space-y-4">
           <SubSection title="1. Gestión por Procesos Asistenciales">
-            Entender la atención como un flujo continuo que atraviesa servicios (Urgencia -> Pabellón -> UCI), rompiendo la lógica de "compartimentos estancos" o feudos.
+            Entender la atención como un flujo continuo que atraviesa servicios (Urgencia &rarr; Pabellón &rarr; UCI), rompiendo la lógica de "compartimentos estancos" o feudos.
           </SubSection>
           <SubSection title="2. Gobernanza Clínica">
             Involucrar activamente a los profesionales de la salud en la gestión de recursos, calidad y seguridad. Compartir la responsabilidad de los resultados entre clínicos y administrativos.
@@ -199,7 +199,7 @@ export const CHAPTERS: Chapter[] = [
       </div>
     ),
     quiz: [
-      { id: 201, question: "El principio de Gobernanza Clínica implica que las decisiones financieras son exclusivas de los ingenieros comerciales.", options: ["Verdadero", "Falso"], correctAnswer: 1, explanation: "Falso. Implica দায়িত্ব compartida. Los clínicos participan en decisiones de gestión porque estas afectan la calidad y seguridad del paciente." },
+      { id: 201, question: "El principio de Gobernanza Clínica implica que las decisiones financieras son exclusivas de los ingenieros comerciales.", options: ["Verdadero", "Falso"], correctAnswer: 1, explanation: "Falso. Implica responsabilidad compartida. Los clínicos participan en decisiones de gestión porque estas afectan la calidad y seguridad del paciente." },
       { id: 202, question: "La Ley 20.584 regula los aranceles y presupuestos de los hospitales.", options: ["Verdadero", "Falso"], correctAnswer: 1, explanation: "Falso. Esa ley regula los Derechos y Deberes de los pacientes (trato digno, seguridad, información). El presupuesto se rige por otras normas." },
       { id: 203, question: "La Estrategia Nacional de Salud (ENS) es una sugerencia opcional para los hospitales públicos.", options: ["Verdadero", "Falso"], correctAnswer: 1, explanation: "Falso. Es la política pública rectora. Los objetivos estratégicos de los hospitales deben alinearse obligatoriamente con las metas de la ENS." }
     ]
@@ -632,7 +632,7 @@ export const CHAPTERS: Chapter[] = [
         <p><strong>9.4.1 Funciones:</strong> Asegurar que no se salten pasos metodológicos críticos durante el proceso de planificación y control. Uso como herramienta de control de calidad.</p>
         
         <h3 className="text-xl font-bold text-slate-900 mt-8">9.5 Guías para talleres participativos</h3>
-        <p><strong>9.5.2 Diseño metodológico sugerido:</strong> Uso de técnicas participativas como Metaplan, World Café, Lluvia de ideas estructurada, Design Thinking. Estructura: Apertura -> Divergencia -> Convergencia -> Cierre.</p>
+        <p><strong>9.5.2 Diseño metodológico sugerido:</strong> Uso de técnicas participativas como Metaplan, World Café, Lluvia de ideas estructurada, Design Thinking. Estructura: Apertura &rarr; Divergencia &rarr; Convergencia &rarr; Cierre.</p>
       </div>
     ),
     content: (
@@ -650,7 +650,7 @@ export const CHAPTERS: Chapter[] = [
         <p>Listas de verificación para asegurar que no se salten pasos metodológicos críticos. Útil para el control de calidad del proceso de planificación.</p>
 
         <SectionTitle>9.5 Talleres Participativos</SectionTitle>
-        <p>Guías para co-diseño y validación. Uso de técnicas como <strong>Metaplan, World Café y Design Thinking</strong>. Estructura recomendada: Apertura -> Divergencia -> Convergencia -> Cierre.</p>
+        <p>Guías para co-diseño y validación. Uso de técnicas como <strong>Metaplan, World Café y Design Thinking</strong>. Estructura recomendada: Apertura &rarr; Divergencia &rarr; Convergencia &rarr; Cierre.</p>
       </div>
     ),
     quiz: [
