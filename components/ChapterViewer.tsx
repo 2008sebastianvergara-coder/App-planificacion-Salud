@@ -6,13 +6,15 @@ import {
   ChevronRight, 
   ChevronLeft, 
   RotateCcw, 
-  HelpCircle, 
   Trophy, 
   XCircle, 
-  CheckSquare, 
   ThumbsUp, 
   ThumbsDown,
-  ArrowRight
+  ArrowRight,
+  BookOpen,
+  Eye,
+  FileText,
+  Book
 } from 'lucide-react';
 
 interface ChapterViewerProps {
@@ -29,18 +31,20 @@ const ChapterViewer: React.FC<ChapterViewerProps> = ({
   onPrev,
   onComplete 
 }) => {
-  // Estado simple para el modo Verdadero/Falso
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [quizFinished, setQuizFinished] = useState(false);
+  
+  // Nuevo estado para el modo de lectura
+  const [viewMode, setViewMode] = useState<'interactive' | 'fulltext'>('interactive');
 
-  // Reiniciar al cambiar de capítulo
   useEffect(() => {
     setCurrentQIndex(0);
     setShowFeedback(false);
     setIsCorrect(false);
     setQuizFinished(false);
+    setViewMode('interactive'); // Reset to interactive on chapter change
   }, [chapter.id]);
 
   const handleAnswer = (optionIndex: number) => {
@@ -77,27 +81,22 @@ const ChapterViewer: React.FC<ChapterViewerProps> = ({
     setShowFeedback(false);
   };
 
-  // --- RENDERIZADO ---
-
   const renderGame = () => {
     const question = chapter.quiz![currentQIndex];
 
     return (
       <div className="max-w-2xl mx-auto text-center">
-        {/* Progress */}
         <div className="flex justify-between items-center mb-8 text-sm text-slate-400 font-bold uppercase tracking-wider">
           <span>Pregunta {currentQIndex + 1} de {chapter.quiz!.length}</span>
           <span>Evaluación Rápida</span>
         </div>
 
-        {/* Question Card */}
         <div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 mb-8 min-h-[160px] flex items-center justify-center">
           <h3 className="text-2xl font-bold text-slate-800 leading-snug">
             {question.question}
           </h3>
         </div>
 
-        {/* Buttons Area */}
         {!showFeedback ? (
           <div className="grid grid-cols-2 gap-6">
             <button
@@ -203,14 +202,71 @@ const ChapterViewer: React.FC<ChapterViewerProps> = ({
       </div>
 
       <div className="p-6 md:p-10">
-        <div className="prose prose-slate max-w-none mb-16">
-          {chapter.content}
+        
+        {/* Toggle Mode Button */}
+        <div className="flex justify-end mb-8">
+          <div className="bg-slate-100 p-1 rounded-xl inline-flex shadow-inner">
+            <button 
+              onClick={() => setViewMode('interactive')}
+              className={`px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
+                viewMode === 'interactive' 
+                  ? 'bg-white text-teal-700 shadow-sm' 
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              <Eye size={18}/> Modo Didáctico
+            </button>
+            <button 
+              onClick={() => setViewMode('fulltext')}
+              className={`px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${
+                viewMode === 'fulltext' 
+                  ? 'bg-slate-800 text-white shadow-sm' 
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              <FileText size={18}/> Modo Detallado
+            </button>
+          </div>
         </div>
 
-        {/* INTERACTIVE GAME AREA */}
-        {chapter.quiz && chapter.quiz.length > 0 && (
-          <div className="bg-slate-50 rounded-3xl border border-slate-200 p-8 shadow-inner relative overflow-hidden">
-            {/* Background decoration */}
+        {/* Content Render */}
+        {viewMode === 'interactive' ? (
+          <div className="prose prose-slate max-w-none mb-16 animate-in fade-in slide-in-from-bottom-2">
+            {chapter.content}
+          </div>
+        ) : (
+          <div className="mb-16 animate-in fade-in slide-in-from-bottom-2 bg-slate-50 p-8 rounded-xl border border-slate-200 font-serif text-slate-800 leading-relaxed text-lg text-justify shadow-inner">
+            <div className="flex items-center gap-2 mb-6 text-slate-400 uppercase tracking-widest text-xs font-bold border-b border-slate-200 pb-2">
+              <BookOpen size={16}/> Texto Completo del Manual
+            </div>
+            
+            {/* Texto del Manual */}
+            <div className="mb-12">
+                {chapter.fullContent || <p className="text-center italic text-slate-500">Contenido completo no disponible para este capítulo.</p>}
+            </div>
+
+            {/* Glosario Específico del Capítulo (Solo visible en modo detallado) */}
+            {chapter.glossary && chapter.glossary.length > 0 && (
+              <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm mt-8">
+                <h4 className="flex items-center gap-2 font-bold text-slate-800 mb-6 text-xl border-b border-slate-100 pb-3">
+                  <Book size={20} className="text-teal-600" /> Glosario Técnico de este Capítulo
+                </h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {chapter.glossary.map((item, idx) => (
+                    <div key={idx} className="relative pl-4 border-l-2 border-teal-200">
+                      <strong className="block text-teal-800 font-bold text-base mb-1">{item.term}</strong>
+                      <p className="text-sm text-slate-600 leading-relaxed font-sans">{item.definition}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* INTERACTIVE GAME AREA - Always visible at bottom in interactive mode only to save space, or can be both */}
+        {chapter.quiz && chapter.quiz.length > 0 && viewMode === 'interactive' && (
+          <div className="bg-slate-50 rounded-3xl border border-slate-200 p-8 shadow-inner relative overflow-hidden mt-12">
             <div className="absolute top-0 right-0 w-64 h-64 bg-teal-100 rounded-full opacity-20 -mr-20 -mt-20"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100 rounded-full opacity-20 -ml-20 -mb-20"></div>
             

@@ -8,9 +8,10 @@ import PublicPrivateComparator from './components/PublicPrivateComparator';
 import AiTutor from './components/AiTutor';
 import Credits from './components/Credits';
 import Welcome from './components/Welcome';
+import ToolTutorial from './components/ToolTutorial';
 import { ViewState } from './types';
 import { CHAPTERS } from './constants';
-import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star, Download, Mail, Phone, MapPin } from 'lucide-react';
+import { Book, Activity, BrainCircuit, HelpCircle, CheckCircle2, Menu, X, BookOpen, MessageCircleQuestion, Info, Target, Users, Star, Download, Mail, Phone, MapPin, Building2, Landmark, PlayCircle } from 'lucide-react';
 
 const Sidebar = ({ chapters, currentIdx, completed, onSelect, isOpen, onClose }: any) => (
   <>
@@ -320,8 +321,14 @@ const App: React.FC = () => {
   const [tutorMode, setTutorMode] = useState<'friendly' | 'defense'>('friendly');
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [tutorialTool, setTutorialTool] = useState<'swot' | 'kpi' | null>(null);
 
-  const navToChap = (i: number) => { setCurrIdx(i); setView(ViewState.LEARN); setIsSidebarOpen(false); };
+  const navToChap = (i: number) => { 
+    setCurrIdx(i); 
+    setView(ViewState.LEARN); 
+    setIsSidebarOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   
   const startDefense = () => { 
     setTutorMode('defense'); 
@@ -336,10 +343,8 @@ const App: React.FC = () => {
   const goToTools = () => setView(ViewState.TOOLS);
   const goToWelcome = () => setView(ViewState.WELCOME);
 
-  // Calculate Progress
+  // Calculate Progress (used for Sidebar checkmarks only now)
   const totalChapters = CHAPTERS.length;
-  const completedCount = Object.keys(completed).length;
-  const progressPercent = Math.round((completedCount / totalChapters) * 100);
 
   const Content = () => {
     if (view === ViewState.HOME) return <HomeView onStart={() => navToChap(0)} onDefense={startDefense} onFriendly={startFriendlyTutor} onTools={goToTools} onWelcome={goToWelcome} />;
@@ -351,10 +356,7 @@ const App: React.FC = () => {
         {/* Mobile Toggle */}
         <div className="md:hidden flex justify-between items-center mb-4 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
           <div className="flex items-center gap-3">
-            <span className="font-bold text-slate-700">Capítulo {currIdx + 1}/{totalChapters}</span>
-            <div className="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
-              <div className="h-full bg-teal-500 transition-all duration-500" style={{ width: `${progressPercent}%` }}></div>
-            </div>
+            <span className="font-bold text-slate-700">Capítulo {currIdx + 1}</span>
           </div>
           <button onClick={() => setIsSidebarOpen(true)} className="p-2 bg-slate-100 rounded-lg text-slate-600 hover:bg-slate-200">
             <Menu size={24} />
@@ -365,26 +367,15 @@ const App: React.FC = () => {
           chapters={CHAPTERS} 
           currentIdx={currIdx} 
           completed={completed} 
-          onSelect={setCurrIdx} 
+          onSelect={(i: number) => {
+            setCurrIdx(i);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
         />
         
         <div className="flex-1 min-w-0">
-          {/* Desktop Progress Bar */}
-          <div className="hidden md:flex items-center justify-between mb-6 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-            <div>
-              <h2 className="font-bold text-xl text-slate-800">Progreso del Curso</h2>
-              <p className="text-sm text-slate-500">{completedCount} de {totalChapters} capítulos completados</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="text-2xl font-bold text-teal-600">{progressPercent}%</div>
-              <div className="w-48 h-3 bg-slate-100 rounded-full overflow-hidden shadow-inner">
-                <div className="h-full bg-gradient-to-r from-teal-500 to-green-500 transition-all duration-1000 ease-out" style={{ width: `${progressPercent}%` }}></div>
-              </div>
-            </div>
-          </div>
-
           <ChapterViewer 
             chapter={CHAPTERS[currIdx]} 
             onNext={currIdx < CHAPTERS.length - 1 ? () => {
@@ -411,7 +402,15 @@ const App: React.FC = () => {
         
         <section className="bg-gradient-to-br from-white to-purple-50 p-1 rounded-2xl shadow-lg border border-purple-100">
           <div className="bg-white rounded-xl p-6">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-purple-800 border-b pb-4"><BrainCircuit className="text-purple-600"/> Laboratorio de KPIs</h2>
+            <div className="flex justify-between items-center mb-6 border-b pb-4">
+              <h2 className="text-2xl font-bold flex items-center gap-3 text-purple-800"><BrainCircuit className="text-purple-600"/> Laboratorio de KPIs</h2>
+              <button 
+                onClick={() => setTutorialTool('kpi')}
+                className="flex items-center gap-2 text-sm font-bold text-purple-600 bg-purple-100 px-4 py-2 rounded-full hover:bg-purple-200 transition-colors"
+              >
+                <PlayCircle size={18} /> Ver Video Tutorial
+              </button>
+            </div>
             <KpiTrainer />
           </div>
         </section>
@@ -425,7 +424,15 @@ const App: React.FC = () => {
 
         <section className="bg-gradient-to-br from-white to-blue-50 p-1 rounded-2xl shadow-lg border border-blue-100">
           <div className="bg-white rounded-xl p-6">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-blue-800 border-b pb-4"><Book className="text-blue-600"/> Constructor FODA</h2>
+            <div className="flex justify-between items-center mb-6 border-b pb-4">
+               <h2 className="text-2xl font-bold flex items-center gap-3 text-blue-800"><Book className="text-blue-600"/> Constructor FODA</h2>
+               <button 
+                onClick={() => setTutorialTool('swot')}
+                className="flex items-center gap-2 text-sm font-bold text-blue-600 bg-blue-100 px-4 py-2 rounded-full hover:bg-blue-200 transition-colors"
+              >
+                <PlayCircle size={18} /> Ver Video Tutorial
+              </button>
+            </div>
             <SwotBuilder />
           </div>
         </section>
@@ -450,6 +457,11 @@ const App: React.FC = () => {
         />
         <main className="flex-1"><Content /></main>
         
+        {/* Tutorial Modal */}
+        {tutorialTool && (
+          <ToolTutorial tool={tutorialTool} onClose={() => setTutorialTool(null)} />
+        )}
+
         {/* FOOTER ACTUALIZADO */}
         <footer className="bg-slate-900 text-slate-400 py-12 text-center text-sm border-t border-slate-800 mt-12">
           <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8 mb-10">

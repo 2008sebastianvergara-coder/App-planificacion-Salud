@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export enum ViewState {
@@ -17,12 +18,19 @@ export interface QuizQuestion {
   explanation: string;
 }
 
+export interface GlossaryItem {
+  term: string;
+  definition: string;
+}
+
 export interface Chapter {
   id: string;
   title: string;
   description: string;
   image: string;
-  content: React.ReactNode;
+  content: React.ReactNode;     // The interactive/visual content
+  fullContent?: React.ReactNode; // The dense, verbatim manual text
+  glossary?: GlossaryItem[];    // Terms specific to the detailed view
   quiz?: QuizQuestion[];
 }
 
