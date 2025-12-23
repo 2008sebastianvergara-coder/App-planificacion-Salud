@@ -23,7 +23,39 @@
 }
 </script>
 <script type="module" src="/index.tsx"></script>
+<div class="header-search-container">
+    <div class="gcse-searchbox-only"></div> 
+    
+    <input type="text" class="placeholder-search" placeholder="Buscar en el manual...">
+</div>
+<style>
+/* Contenedor principal en el header */
+/* Estilo para el input (apariencia visual) */
+.placeholder-search, .gsc-input {
+    width: 100%;
+    padding: 8px 15px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.1) !important; /* Fondo semi-transparente */
+    color: white !important;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
 
+/* Cambio de color cuando haces clic para buscar */
+.placeholder-search:focus, .gsc-input:focus {
+    background: white !important;
+    color: #333 !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Para que el texto "Buscar..." se vea blanco inicialmente */
+.placeholder-search::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+</style>
 
 
 </head>
