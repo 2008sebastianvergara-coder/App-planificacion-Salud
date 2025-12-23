@@ -23,36 +23,48 @@
 }
 </script>
 <script type="module" src="/index.tsx"></script>
+<script async src="https://cse.google.com/cse.js?cx=b3438c5187594411a"></script>
+
 <div class="header-search-container">
-    <div class="gcse-searchbox-only"></div> 
-    
-    <input type="text" class="placeholder-search" placeholder="Buscar en el manual...">
+    <div class="gcse-search"></div> 
 </div>
 <style>
-/* Contenedor principal en el header */
-/* Estilo para el input (apariencia visual) */
-.placeholder-search, .gsc-input {
-    width: 100%;
-    padding: 8px 15px !important;
+/* Esto quita el borde y fondo blanco feo que Google pone por defecto */
+.gsc-control-cse {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Forzamos el diseño redondeado al cuadro de Google */
+.gsc-input-box {
     border-radius: 20px !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    background: rgba(255, 255, 255, 0.1) !important; /* Fondo semi-transparente */
+}
+
+/* Estilo para el botón de la lupa de Google */
+button.gsc-search-button-v2 {
+    border-radius: 20px !important;
+    margin-left: 5px !important;
+    background-color: #004a87 !important; /* El azul oscuro de tu logo */
+    border: none !important;
+}
+
+/* Cambia el color del texto que escribes a blanco */
+input.gsc-input {
     color: white !important;
-    font-size: 14px;
-    outline: none;
-    transition: all 0.3s ease;
+    background: none !important;
 }
 
-/* Cambio de color cuando haces clic para buscar */
-.placeholder-search:focus, .gsc-input:focus {
-    background: white !important;
-    color: #333 !important;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+/* Cuando haces clic en la caja de búsqueda */
+.gsc-input-box-focus {
+    background-color: white !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5) !important;
 }
 
-/* Para que el texto "Buscar..." se vea blanco inicialmente */
-.placeholder-search::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+.gsc-input-box-focus input.gsc-input {
+    color: #333 !important; /* Texto negro cuando el fondo es blanco */
 }
 
 </style>
