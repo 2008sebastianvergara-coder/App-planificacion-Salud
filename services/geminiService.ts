@@ -88,7 +88,28 @@ REGLAS GENERALES:
 - Tu misión es que el estudiante ENTIENDA, no evaluarlo.
 `;
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+// SECURITY WARNING: This key is exposed to the client-side.
+// Ideally, this should be proxied through a backend service.
+// Ensure your API key has strict referrer restrictions in Google Cloud Console.
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+if (!apiKey) {
+  console.warn("VITE_GEMINI_API_KEY is missing. AI features will not work. Please add it to your .env file.");
+}
+
+// Lazy initialization to prevent app crash if key is missing
+let ai: GoogleGenAI | null = null;
+
+const getAiClient = () => {
+  if (ai) return ai;
+
+  if (!apiKey) {
+    throw new Error("VITE_GEMINI_API_KEY is not set.");
+  }
+
+  ai = new GoogleGenAI({ apiKey });
+  return ai;
+};
 
 export const sendMessageToTutor = async (
   history: {role: string, parts: {text: string}[]}[], 
@@ -96,8 +117,12 @@ export const sendMessageToTutor = async (
   mode: 'strict' | 'friendly' = 'strict'
 ) => {
   try {
+    const client = getAiClient();
     const model = 'gemini-2.5-flash'; 
     
+    // OPTIMIZATION SUGGESTION:
+    // Consider truncating history if the conversation becomes very long to avoid token limits.
+    // e.g., history.slice(-10) to keep only the last 10 messages.
     const contents = [
       ...history.map(h => ({
         role: h.role,
@@ -108,7 +133,7 @@ export const sendMessageToTutor = async (
 
     const instruction = mode === 'strict' ? STRICT_SYSTEM_INSTRUCTION : FRIENDLY_SYSTEM_INSTRUCTION;
 
-    const response = await ai.models.generateContent({
+    const response = await client.models.generateContent({
       model,
       config: {
         systemInstruction: instruction,
